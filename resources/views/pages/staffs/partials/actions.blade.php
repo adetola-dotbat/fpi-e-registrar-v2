@@ -26,9 +26,9 @@
                 <a type="button" href="{{ route('admin.staff.institution.attended.view', $user->id) }}"
                     class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Institution
                     Attended</a>
-                <a type="button" href="{{ route('admin.staff.institution.attended.view', $user->id) }}"
+                <a type="button" href="{{ route('admin.staff.professional.details.view', $user->id) }}"
                     class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Professional
-                    Body</a>
+                    Details</a>
             </div>
         </div>
     </div>

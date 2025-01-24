@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StaffCommendationController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffGratitudePaymentController;
 use App\Http\Controllers\Admin\StaffInstitutionAttendedController;
+use App\Http\Controllers\Admin\StaffProfessionalDetailsController;
 use App\Http\Controllers\Admin\StaffPromotionController;
 use App\Http\Controllers\Admin\StaffPublicServiceController;
 use App\Http\Controllers\Admin\StaffTermination\StaffTerminationController;
@@ -96,13 +97,20 @@ Route::prefix('admin/')->name('admin.')->group(function () {
         Route::prefix('institution-attended/')->name('institution.attended.')->group(function () {
             // Route::get('', [StaffBankDetailController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffInstitutionAttendedController::class, 'view'])->name('view');
-            // Route::post('', [StaffInstitutionAttendedController::class, 'store'])->name('store');
+            Route::post('', [StaffInstitutionAttendedController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffInstitutionAttendedController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffInstitutionAttendedController::class, 'update'])->name('update');
         });
+
+        Route::prefix('professional-details/')->name('professional.details.')->group(function () {
+            // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffProfessionalDetailsController::class, 'view'])->name('view');
+            Route::post('', [StaffProfessionalDetailsController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffProfessionalDetailsController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffProfessionalDetailsController::class, 'update'])->name('update');
+        });
     });
 });
-Route::post('', [StaffInstitutionAttendedController::class, 'store'])->name('institution.store');
 
 Route::get('/upload-csv', [UploadController::class, 'showUploadForm'])->name('show.upload.form');
 Route::post('/upload-csv', [UploadController::class, 'uploadProfessionalDetails'])->name('upload.csv');

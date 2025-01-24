@@ -11,59 +11,34 @@
 
                 @includeIf('pages.shared._form_message')
 
-                <form class="flex flex-col gap-3" action="{{ route('admin.staff.institution.attended.store') }}"
+                <form class="flex flex-col gap-3" action="{{ route('admin.staff.professional.details.store') }}"
                     enctype="multipart/form-data" method="post">
                     @csrf
                     @method('post')
                     <input type="text" name="user_id" hidden value="{{ $user->id }}">
 
                     <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="school_name" class="inline-block mb-2 text-sm font-medium text-default-800">School
+                        <label for="professional_name"
+                            class="inline-block mb-2 text-sm font-medium text-default-800">Professional
                             Name</label>
                         <div class="md:col-span-3">
-                            <input type="text" name="school_name" id="school_name" class="form-input" required>
+                            <input type="text" name="professional_name" id="professional_name" class="form-input"
+                                required>
                         </div>
                     </div>
-
-                    <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="course_study" class="inline-block mb-2 text-sm font-medium text-default-800">Course of
-                            Study</label>
-                        <div class="md:col-span-3">
-                            <input type="text" name="course_study" id="course_study" class="form-input" required>
-                        </div>
-                    </div>
-
-
-                    <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="qualification"
-                            class="inline-block mb-2 text-sm font-medium text-default-800">Qualification</label>
-                        <div class="md:col-span-3">
-                            <input type="text" name="qualification" id="qualification" class="form-input">
-                        </div>
-                    </div>
-
 
                     <div class="grid items-center grid-cols-4 gap-6">
                         <label for="certificate"
                             class="inline-block mb-2 text-sm font-medium text-default-800">Certificate</label>
                         <div class="md:col-span-3">
-                            <input type="file" name="certificate" id="certificate" class="form-input">
+                            <input type="file" name="certificate" id="certificate" class="form-input" required>
                         </div>
                     </div>
 
                     <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="date_obtained" class="inline-block mb-2 text-sm font-medium text-default-800">Date
-                            Obtained</label>
+                        <label for="year" class="inline-block mb-2 text-sm font-medium text-default-800">Year</label>
                         <div class="md:col-span-3">
-                            <input type="date" name="date_obtained" id="date_obtained" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <!-- Count -->
-                    <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="count" class="inline-block mb-2 text-sm font-medium text-default-800">Count</label>
-                        <div class="md:col-span-3">
-                            <input type="number" name="count" id="count" class="form-input">
+                            <input type="date" name="year" id="year" class="form-input">
                         </div>
                     </div>
 
@@ -92,47 +67,35 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         S/N</th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        School Name</th>
-                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Course of Study
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Qualification
-                                    </th>
+                                        Professional Name</th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         Certificate
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Date Obtained
+                                        Year
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
                                         Action</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-default-200">
-                                @foreach ($institutions as $institution)
+                                @foreach ($professionals as $professional)
                                     <tr>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
                                             {{ $loop->iteration }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                            {{ $institution->school_name }}
+                                            {{ $professional->professional_name }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                            {{ $institution->course_study }}
+                                            {{ $professional->certificate }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $institution->qualification }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $institution->certificate }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $institution->date_obtained }}
+                                            {{ $professional->year }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                             <a class="text-primary hover:text-primary-700"
-                                                href="{{ route('admin.staff.institution.attended.destroy', $institution->id) }}">Delete</a>
+                                                href="{{ route('admin.staff.professional.details.destroy', $professional->id) }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

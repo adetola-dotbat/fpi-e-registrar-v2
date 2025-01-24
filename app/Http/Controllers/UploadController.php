@@ -228,7 +228,7 @@ class UploadController extends Controller
             foreach ($data as $row) {
                 $schoolData = array_combine($header, $row);
 
-                \App\Models\StaffProfessionalDetail::create([
+                \App\Models\StaffProfessionalDetails::create([
                     'user_id' => $schoolData['user_id'] ?? null,
                     'professional_name' => $schoolData['professional_name'] ?? null,
                     'employee_id' => $schoolData['employee_id'] ?? null,

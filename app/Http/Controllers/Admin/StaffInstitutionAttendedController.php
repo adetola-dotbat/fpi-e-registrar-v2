@@ -24,13 +24,13 @@ class StaffInstitutionAttendedController extends Controller
         return view('pages.staffs.institutionAttended.index', $data);
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         try {
             $validatedData = $request->all();
 
             if ($request->hasFile('certificate')) {
-                $filePath = FileHelper::uploadsImage('certificate', $request, 'certificates');
+                $filePath = FileHelper::uploadsImage('certificate', $request, 'school_certificate');
                 $validatedData['certificate'] = $filePath;
             }
 

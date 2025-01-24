@@ -87,7 +87,7 @@ class User extends Authenticatable
 
     public function staffProfessionalDetails(): HasMany
     {
-        return $this->hasMany(StaffProfessionalDetail::class);
+        return $this->hasMany(StaffProfessionalDetails::class);
     }
 
     /**

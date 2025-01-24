@@ -15,10 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignUuid('user_id')->nullable();
-            $table->string('employee_id')->nullable();
             $table->string('professional_name')->nullable();
             $table->string('certificate')->nullable();
-            $table->string('year')->nullable();
+            $table->date('year')->nullable();
             $table->string('status')->nullable();
 
             $table->timestamps();
