@@ -12,17 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('previous_employments', function (Blueprint $table) {
-            $table->id();
-            $table->string('previous_employment_id')->nullable();
-            $table->string('employee_id')->nullable();
+            $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->nullable();
             $table->string('company')->nullable();
             $table->string('position_held')->nullable();
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
-            $table->string('dates')->nullable();
-            $table->string('date_created')->nullable();
-            $table->string('date_updated')->nullable();
             $table->string('salary')->nullable();
             $table->text('reason_for_leaving')->nullable();
             $table->string('name_of_employer')->nullable();

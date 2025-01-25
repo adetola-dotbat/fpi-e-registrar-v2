@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffGratitudePaymentController;
 use App\Http\Controllers\Admin\StaffInstitutionAttendedController;
 use App\Http\Controllers\Admin\StaffLeaveController;
+use App\Http\Controllers\Admin\StaffPreviousEmploymentController;
 use App\Http\Controllers\Admin\StaffProfessionalDetailsController;
 use App\Http\Controllers\Admin\StaffPromotionController;
 use App\Http\Controllers\Admin\StaffPublicServiceController;
@@ -117,6 +118,22 @@ Route::prefix('admin/')->name('admin.')->group(function () {
             Route::post('', [StaffLeaveController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffLeaveController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffLeaveController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('previous-employment/')->name('previous.employment.')->group(function () {
+            // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffPreviousEmploymentController::class, 'view'])->name('view');
+            Route::post('', [StaffPreviousEmploymentController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffPreviousEmploymentController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffPreviousEmploymentController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('next-of-kin/')->name('next_of_kin.')->group(function () {
+            // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffPreviousEmploymentController::class, 'view'])->name('view');
+            Route::post('', [StaffPreviousEmploymentController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffPreviousEmploymentController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffPreviousEmploymentController::class, 'update'])->name('update');
         });
     });
 });

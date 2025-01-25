@@ -31,6 +31,9 @@
                     Details</a>
                 <a type="button" href="{{ route('admin.staff.leave.view', $user->id) }}"
                     class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Leave</a>
+                <a type="button" href="{{ route('admin.staff.previous.employment.view', $user->id) }}"
+                    class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Previous
+                    Employment</a>
             </div>
         </div>
     </div>
