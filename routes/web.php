@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StaffCommendationController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffGratitudePaymentController;
 use App\Http\Controllers\Admin\StaffInstitutionAttendedController;
+use App\Http\Controllers\Admin\StaffLeaveController;
 use App\Http\Controllers\Admin\StaffProfessionalDetailsController;
 use App\Http\Controllers\Admin\StaffPromotionController;
 use App\Http\Controllers\Admin\StaffPublicServiceController;
@@ -108,6 +109,14 @@ Route::prefix('admin/')->name('admin.')->group(function () {
             Route::post('', [StaffProfessionalDetailsController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffProfessionalDetailsController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffProfessionalDetailsController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('leaves/')->name('leave.')->group(function () {
+            // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffLeaveController::class, 'view'])->name('view');
+            Route::post('', [StaffLeaveController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffLeaveController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffLeaveController::class, 'update'])->name('update');
         });
     });
 });

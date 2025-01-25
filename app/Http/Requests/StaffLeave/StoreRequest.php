@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ProfessionalDetails;
+namespace App\Http\Requests\StaffLeave;
 
 use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,9 +18,12 @@ class StoreRequest extends BaseRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'professional_name' => 'required|string',
-            'certificate' => 'required|file|mimes:pdf,jpg,jpeg,png',
-            'year' => 'required|date',
+            'date_leave_requested' => 'required|date',
+            'date_resume_duty' => 'required|date',
+            'leave_address' => 'required|string',
+            'recommend' => 'required|string',
+            'leave_type_id' => 'required|exists:leave_types,id',
+            'reasons' => 'required|string',
         ];
     }
 }

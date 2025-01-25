@@ -162,27 +162,16 @@
                             href="#">
                             Profile
                         </a>
-                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100"
-                            href="#">
-                            Feed
-                        </a>
-                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100"
-                            href="#">
-                            Analytics
-                        </a>
-                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100"
-                            href="#">
-                            Settings
-                        </a>
-                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100"
-                            href="#">
-                            Support
-                        </a>
 
                         <hr class="my-2 -mx-2">
 
-                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100"
-                            href="#">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
+
+                        <a class="flex items-center px-3 py-2 text-sm rounded-md text-default-800 hover:bg-default-100 cursor-pointer"
+                            href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Log Out
                         </a>
                     </div>
