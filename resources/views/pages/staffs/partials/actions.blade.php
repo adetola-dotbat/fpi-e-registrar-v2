@@ -34,6 +34,9 @@
                 <a type="button" href="{{ route('admin.staff.previous.employment.view', $user->id) }}"
                     class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Previous
                     Employment</a>
+                <a type="button" href="{{ route('admin.staff.next_of_kin.view', $user->id) }}"
+                    class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Next of
+                    Kin</a>
             </div>
         </div>
     </div>

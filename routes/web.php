@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffGratitudePaymentController;
 use App\Http\Controllers\Admin\StaffInstitutionAttendedController;
 use App\Http\Controllers\Admin\StaffLeaveController;
+use App\Http\Controllers\Admin\StaffNextOfKinController;
 use App\Http\Controllers\Admin\StaffPreviousEmploymentController;
 use App\Http\Controllers\Admin\StaffProfessionalDetailsController;
 use App\Http\Controllers\Admin\StaffPromotionController;
@@ -130,10 +131,10 @@ Route::prefix('admin/')->name('admin.')->group(function () {
 
         Route::prefix('next-of-kin/')->name('next_of_kin.')->group(function () {
             // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
-            Route::get('{staff}', [StaffPreviousEmploymentController::class, 'view'])->name('view');
-            Route::post('', [StaffPreviousEmploymentController::class, 'store'])->name('store');
-            Route::get('destroy/{id}', [StaffPreviousEmploymentController::class, 'destroy'])->name('destroy');
-            Route::post('update', [StaffPreviousEmploymentController::class, 'update'])->name('update');
+            Route::get('{staff}', [StaffNextOfKinController::class, 'view'])->name('view');
+            Route::post('', [StaffNextOfKinController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffNextOfKinController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffNextOfKinController::class, 'update'])->name('update');
         });
     });
 });

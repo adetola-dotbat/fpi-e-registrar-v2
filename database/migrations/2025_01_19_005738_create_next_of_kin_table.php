@@ -12,17 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('next_of_kin', function (Blueprint $table) {
-            $table->id();
-            $table->string('next_of_kin_id')->nullable();
-            $table->string('employee_id')->nullable();
+            $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->nullable();
             $table->foreignId('relationship_id')->nullable();
             $table->string('fullname')->nullable();
             $table->text('address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('count')->nullable();
-            $table->string('date_created')->nullable();
-            $table->string('date_updated')->nullable();
             $table->timestamps();
         });
     }
