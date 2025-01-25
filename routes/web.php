@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\StaffActingAppointmentController;
 use App\Http\Controllers\Admin\StaffBankDetailController;
 use App\Http\Controllers\Admin\StaffCommendationController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\StaffDocumentController;
 use App\Http\Controllers\Admin\StaffGratitudePaymentController;
 use App\Http\Controllers\Admin\StaffInstitutionAttendedController;
 use App\Http\Controllers\Admin\StaffLeaveController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\StaffTermination\TerminationByDeathController;
 use App\Http\Controllers\Admin\StaffTermination\TerminationByResignationController;
 use App\Http\Controllers\Admin\StaffTermination\TerminationByTransferController;
 use App\Http\Controllers\Admin\StaffTransferController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -136,6 +138,22 @@ Route::prefix('admin/')->name('admin.')->group(function () {
             Route::get('destroy/{id}', [StaffNextOfKinController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffNextOfKinController::class, 'update'])->name('update');
         });
+
+        Route::prefix('document/')->name('document.')->group(function () {
+            Route::get('', [StaffDocumentController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffDocumentController::class, 'view'])->name('view');
+            Route::post('', [StaffDocumentController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffDocumentController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffDocumentController::class, 'update'])->name('update');
+        });
+    });
+    Route::prefix('user/')->name('user.')->group(function () {
+        Route::get('', [UserController::class, 'index'])->name('index');
+        Route::get('{staff}', [UserController::class, 'view'])->name('view');
+        Route::get('edit/{staff}', [UserController::class, 'edit'])->name('edit');
+        Route::post('', [UserController::class, 'store'])->name('store');
+        Route::get('destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
+        Route::post('update', [UserController::class, 'update'])->name('update');
     });
 });
 

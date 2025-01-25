@@ -16,7 +16,6 @@ class StaffController extends Controller
         $data = [
             'users' => $this->staffService->all(),
         ];
-
         return view('pages.staffs.index', $data);
     }
 
@@ -25,8 +24,6 @@ class StaffController extends Controller
         $data = [
             'user' => $this->staffService->getStaff($id),
         ];
-
-        // dd($data);
         return view('pages.staffs.view', $data);
     }
 
@@ -35,8 +32,6 @@ class StaffController extends Controller
         $data = [
             'user' => $this->staffService->getStaff($id),
         ];
-
-        // dd($data);
         return view('pages.staffs.transfer', $data);
     }
 }

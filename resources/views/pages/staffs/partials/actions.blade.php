@@ -37,6 +37,8 @@
                 <a type="button" href="{{ route('admin.staff.next_of_kin.view', $user->id) }}"
                     class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Next of
                     Kin</a>
+                <a type="button" href="{{ route('admin.staff.document.view', $user->id) }}"
+                    class="border rounded-full btn border-success text-success hover:bg-success hover:text-white">Document</a>
             </div>
         </div>
     </div>
