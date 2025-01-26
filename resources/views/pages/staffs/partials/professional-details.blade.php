@@ -24,7 +24,11 @@
                                             Certificate
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $detail->certificate }}
+                                            <a href="{{ asset('upload/profession_body/' . $detail->certificate) }}"
+                                                target="_blank"
+                                                class="btn btn-sm border-success text-success hover:bg-success hover:text-white"><i
+                                                    class="material-symbols-rounded">file_download</i> View
+                                                Document</a>
                                         </td>
                                     </tr>
                                     <tr>

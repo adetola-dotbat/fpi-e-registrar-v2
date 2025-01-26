@@ -4,7 +4,8 @@
     </div>
     <div class="relative">
         <div class="relative w-full h-44">
-            <img class="object-cover w-full h-full" src="/assets/images/users/avatar-1.jpg" alt="Cover Image">
+            <img class="object-cover w-full h-full" src="{{ asset('upload/passports/' . $user->passport) }}"
+                alt="Cover Image">
             <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
             </div>
         </div>
@@ -13,7 +14,7 @@
         <div class="absolute transform -translate-x-1/2 -bottom-14 start-1/2">
             <div class="relative">
                 <img class="border-4 border-white rounded-full shadow-md w-28 h-28"
-                    src="/assets/images/users/avatar-1.jpg" alt="Profile Picture">
+                    src="{{ asset('upload/passports/' . $user->passport) }}" alt="Profile Picture">
                 <span class="absolute w-5 h-5 bg-green-500 border-2 border-white rounded-full bottom-1 end-1"></span>
             </div>
         </div>
@@ -21,7 +22,8 @@
 
     <!-- Name, Title, and Location -->
     <div class="pt-16 pb-4 text-center">
-        <h2 class="mb-2 text-xl font-semibold text-default-700"> {{ ucfirst($user->title) }}.
+        <h2 class="mb-2 text-xl font-semibold text-default-700">
+            {{ $user->title ? rtrim(ucfirst($user->title), '.') . '.' : '' }}
             {{ $user->fullname }}
         </h2>
         <p class="text-sm text-default-600">{{ $user->email }}</p>
@@ -86,7 +88,7 @@
                                 <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
                                     Nationality:</td>
                                 <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                    {{ $user->nationality }}</td>
+                                    {{ Str::title($user->nationality) }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">GPZ:

@@ -9,19 +9,12 @@
                     <div class="overflow-hidden border rounded-lg shadow">
                         <table class="min-w-full divide-y divide-default-200">
                             @foreach ($user->nextOfKins as $kin)
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" class="py-4 text-lg font-semibold text-default-800">
-                                            {{ $loop->iteration }}. Next of Kin
-                                        </th>
-                                    </tr>
-                                </thead>
                                 <tbody class="divide-y divide-default-200">
                                     <tr>
-                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                        <td class="px-6 py-4 text-sm font-bold whitespace-nowrap text-default-800">
                                             Relationship
                                         </td>
-                                        <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
+                                        <td class="px-6 py-4 text-sm font-bold whitespace-nowrap text-default-800">
                                             {{ $kin->relationship->name }}
                                         </td>
                                     </tr>

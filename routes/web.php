@@ -160,7 +160,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
 });
 
 Route::get('/upload-csv', [UploadController::class, 'showUploadForm'])->name('show.upload.form');
-Route::post('/upload-csv', [UploadController::class, 'uploadProfessionalDetails'])->name('upload.csv');
+Route::post('/upload-csv', [UploadController::class, 'uploadPreviousEmployment'])->name('upload.csv');
 
 
 // Route::get('/dashboard', function () {

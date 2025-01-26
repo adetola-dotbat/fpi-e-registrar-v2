@@ -17,9 +17,9 @@ class StaffDetail extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function staffStep(): BelongsTo
+    public function staffStep(): HasOne
     {
-        return $this->belongsTo(StaffStep::class, 'staff_step_id');
+        return $this->hasOne(StaffStep::class, 'staff_step_id');
     }
 
     public function staffCadre(): BelongsTo

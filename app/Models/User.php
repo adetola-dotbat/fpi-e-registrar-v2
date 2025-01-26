@@ -51,8 +51,8 @@ class User extends Authenticatable
 
     public function getFullnameAttribute()
     {
-        $otherName = $this->other_name ? ' ' . $this->other_name : '';
-        return "{$this->first_name} {$this->surname}{$otherName}";
+        $otherName = $this->other_name ?? '';
+        return "{$this->first_name} {$this->surname}";
     }
 
     public function staffDetail(): HasOne

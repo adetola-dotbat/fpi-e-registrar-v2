@@ -3,7 +3,6 @@
 namespace App\Http\Requests\StaffDocument;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends BaseRequest
 {

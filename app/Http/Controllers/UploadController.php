@@ -235,7 +235,44 @@ class UploadController extends Controller
                     'certificate' => $schoolData['certificate'] ?? null,
                     'year' => $schoolData['year'] ?? null,
 
-                    'status' => $schoolData['approval_status'],
+                    'status' => $schoolData['approved_status'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+            return back()->with('success', 'CSV file uploaded and school attendance details imported successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error importing data: ' . $e->getMessage());
+        }
+    }
+    public function uploadPreviousEmployment(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|mimes:csv,txt',
+        ]);
+
+        try {
+            $file = $request->file('csv_file');
+            $path = $file->getRealPath();
+
+            $data = array_map('str_getcsv', file($path));
+            $header = array_shift($data);
+
+            foreach ($data as $row) {
+                $schoolData = array_combine($header, $row);
+
+                \App\Models\PreviousEmployment::create([
+                    'user_id' => $schoolData['user_id'] ?? null,
+
+                    'company' => $schoolData['company'] ?? null,
+                    'position_held' => $schoolData['position_held'] ?? null,
+                    'date_from' => $schoolData['date_from'] ?? null,
+                    'date_to' => $schoolData['date_to'] ?? null,
+                    'salary' => $schoolData['salary'] ?? null,
+                    'reason_for_leaving' => $schoolData['reason_for_leaving'] ?? null,
+                    'name_of_employer' => $schoolData['name_of_employer'] ?? null,
+                    'employer_address' => $schoolData['employer_address'] ?? null,
+
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

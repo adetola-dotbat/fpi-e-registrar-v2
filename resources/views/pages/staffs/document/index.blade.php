@@ -76,7 +76,22 @@
                                             {{ $document->document }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                            {{ $document->file }}
+                                            @if ($document->file)
+                                                <div class="hs-tooltip">
+                                                    <a href="{{ asset('documents/' . $document->file) }}" target="_blank"
+                                                        class="text-primary-500 hover:underline group relative"
+                                                        data-fc-placement="bottom">
+                                                        <i class="i-tabler-external-link text-success"></i>
+                                                    </a>
+                                                    <span
+                                                        class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-white rounded shadow-sm"
+                                                        role="tooltip">
+                                                        View Document
+                                                    </span>
+                                                </div>
+                                            @else
+                                                <span class="text-default-500">No File</span>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                             <a class="text-primary hover:text-primary-700"

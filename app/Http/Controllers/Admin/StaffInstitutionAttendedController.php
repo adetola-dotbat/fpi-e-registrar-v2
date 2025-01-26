@@ -30,7 +30,7 @@ class StaffInstitutionAttendedController extends Controller
             $validatedData = $request->all();
 
             if ($request->hasFile('certificate')) {
-                $filePath = FileHelper::uploadsImage('certificate', $request, 'school_certificate');
+                $filePath = FileHelper::uploadsImage('certificate', $request, 'upload/school_certificates');
                 $validatedData['certificate'] = $filePath;
             }
 

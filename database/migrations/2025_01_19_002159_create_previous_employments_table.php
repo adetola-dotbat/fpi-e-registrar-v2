@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignUuid('user_id')->nullable();
             $table->string('company')->nullable();
             $table->string('position_held')->nullable();
-            $table->date('date_from')->nullable();
-            $table->date('date_to')->nullable();
+            $table->string('date_from')->nullable();
+            $table->string('date_to')->nullable();
             $table->string('salary')->nullable();
             $table->text('reason_for_leaving')->nullable();
             $table->string('name_of_employer')->nullable();

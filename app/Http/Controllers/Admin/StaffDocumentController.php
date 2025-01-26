@@ -26,7 +26,7 @@ class StaffDocumentController extends Controller
     public function store(StoreRequest $request)
     {
         try {
-            $validatedData = $request->all();
+            $validatedData = $request->validated();
 
             if ($request->hasFile('file')) {
                 $filePath = FileHelper::uploadsImage('file', $request, 'documents');

@@ -10,10 +10,10 @@
                         @foreach ($user->staffBankDetails as $bankDetail)
                             <tbody class="divide-y divide-default-200">
                                 <tr>
-                                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                    <td class="px-6 py-4 text-sm font-bold whitespace-nowrap text-default-800">
                                         Account Name
                                     </td>
-                                    <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
+                                    <td class="px-6 py-4 font-bold text-sm whitespace-nowrap text-default-800">
                                         {{ $bankDetail->account_name }}
                                     </td>
                                 </tr>

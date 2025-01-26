@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->nullable();
             $table->string('professional_name')->nullable();
             $table->string('certificate')->nullable();
-            $table->date('year')->nullable();
+            $table->string('year')->nullable();
             $table->string('status')->nullable();
 
             $table->timestamps();

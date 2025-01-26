@@ -33,7 +33,12 @@
                                             Certificate
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $academic->certificate }}
+
+                                            <a href="{{ asset('upload/school_certificates/' . $academic->certificate) }}"
+                                                target="_blank"
+                                                class="btn btn-sm border-success text-success hover:bg-success hover:text-white"><i
+                                                    class="material-symbols-rounded">file_download</i> View
+                                                Document</a>
                                         </td>
                                     </tr>
 

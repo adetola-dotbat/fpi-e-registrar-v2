@@ -24,17 +24,6 @@ class StaffController extends Controller
         return view('pages.staffs.index', $data);
     }
 
-    public function destroy($id)
-    {
-        try {
-            $this->staffService->destroy($id);
-
-            return redirect()->back()->with("success", value: "User deleted successfully");
-        } catch (\Exception $ex) {
-            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
-        }
-    }
-
     public function view($id)
     {
         $data = [
@@ -49,5 +38,15 @@ class StaffController extends Controller
             'user' => $this->staffService->getStaff($id),
         ];
         return view('pages.staffs.transfer', $data);
+    }
+    public function destroy($id)
+    {
+        try {
+            $this->staffService->destroy($id);
+
+            return redirect()->back()->with("success", value: "User deleted successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
     }
 }

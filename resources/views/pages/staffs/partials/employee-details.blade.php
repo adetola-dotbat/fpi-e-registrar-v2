@@ -70,7 +70,8 @@
                                         Step
                                     </td>
                                     <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                        {{-- {{ optional($user->staffDetail->staffStep->staff_level_no) }} --}}
+                                        {{ $user->staffDetail->staff_step_id ?? 'N/A' }}
+
                                     </td>
                                 </tr>
                             </tbody>
