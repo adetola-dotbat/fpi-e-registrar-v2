@@ -29,9 +29,10 @@
         <p class="text-sm text-default-600">{{ $user->email }}</p>
         <span class="text-xs text-default-400">{{ $user->employee_file_no }}</span>
     </div>
-    <div class="flex justify-center px-6 pb-4 space-x-4">
-        <a href="{{ route('admin.staff.view', $user->id) }}"
-            class="btn border-primary text-primary hover:bg-primary hover:text-white">View Profile</a>
-    </div>
-
+    @hasanyrole('admin|subadmin|manager')
+        <div class="flex justify-center px-6 pb-4 space-x-4">
+            <a href="{{ route('admin.staff.view', $user->id) }}"
+                class="btn border-primary text-primary hover:bg-primary hover:text-white">View Profile</a>
+        </div>
+    @endhasanyrole
 </div>
