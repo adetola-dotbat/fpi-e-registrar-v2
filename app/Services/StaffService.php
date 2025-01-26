@@ -2,16 +2,42 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class StaffService extends UserService
 {
 
-    public function all()
+    public function all($staffType = null)
     {
-        return $this->user->all();
+        $query = $this->user->query();
+
+        if ($staffType) {
+            $query->whereHas('staffDetail', function ($q) use ($staffType) {
+                $q->where('staff_type', $staffType);
+            });
+        }
+
+        return $query->with([
+            'staffDetail',
+            'previousEmployments',
+            'nextOfKins',
+            'emergencies',
+            'staffBankDetails',
+            'staffInstitutionsAttended',
+            'staffProfessionalDetails',
+        ])->get();
     }
 
     public function getStaff($id)
     {
         return $this->getUser($id);
+    }
+
+    public function destroy($id)
+    {
+        if (!$this->user->whereId($id)->exists()) {
+            throw new ModelNotFoundException("Staff record  not found.");
+        }
+        $this->user->whereId($id)->delete();
     }
 }

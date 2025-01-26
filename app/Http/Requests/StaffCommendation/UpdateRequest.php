@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\StaffPublicService;
+namespace App\Http\Requests\StaffCommendation;
 
 use App\Http\Requests\BaseRequest;
 

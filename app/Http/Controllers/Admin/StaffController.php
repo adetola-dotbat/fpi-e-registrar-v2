@@ -11,12 +11,28 @@ class StaffController extends Controller
 
     public function __construct(protected StaffService $staffService) {}
 
-    public function index()
+
+    public function index(Request $request)
     {
+        $staffType = $request->query('type');
+
         $data = [
-            'users' => $this->staffService->all(),
+            'pageTitle' => 'Staff List',
+            'users' => $this->staffService->all($staffType),
         ];
+
         return view('pages.staffs.index', $data);
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->staffService->destroy($id);
+
+            return redirect()->back()->with("success", value: "User deleted successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
     }
 
     public function view($id)

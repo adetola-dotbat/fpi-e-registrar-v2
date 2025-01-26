@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [
+            'pageTitle' => 'Dashboard',
+            'countNonAcademicStaff' => User::whereHas('staffDetail', function ($query) {
+                $query->where('staff_type', 'Non Teaching');
+            })->count(),
+            'countAcademicStaff' => User::whereHas('staffDetail', function ($query) {
+                $query->where('staff_type', 'Academic');
+            })->count(),
+            'totalStaff' => User::whereHas('staffDetail', function ($query) {
+                $query->where('staff_type', 'Academic')
+                    ->orWhere('staff_type', 'Non Teaching');
+            })->count(),
+        ];
+        return view('home', $data);
     }
 }

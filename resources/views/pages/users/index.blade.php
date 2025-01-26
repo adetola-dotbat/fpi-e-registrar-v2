@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@push('styles')
+@endpush
 @section('content')
     <div class="grid gap-6 mt-8 lg:grid-cols-2">
         <div class="card">

@@ -36,15 +36,15 @@
                             class="hs-accordion-content {{ request()->routeIs('staff.index') ? 'block' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300">
                             <ul class="mt-1 space-y-1">
                                 <li class="menu-item">
-                                    <a class="{{ request()->routeIs('staff.index') ? 'active' : '' }} flex items-center gap-x-3.5 rounded-md px-3 py-1.5 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
-                                        href="{{ route('admin.staff.index') }}">
+                                    <a class="flex items-center gap-x-3.5 rounded-md px-3 py-1.5 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                                        href="{{ route('admin.staff.index', ['type' => 'academic']) }}">
                                         <i class="menu-dot"></i>
                                         Academic Staff
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a class="{{ request()->routeIs('staff.index') ? 'active' : '' }} flex items-center gap-x-3.5 rounded-md px-3 py-1.5 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
-                                        href="{{ route('admin.staff.index') }}">
+                                        href="{{ route('admin.staff.index', ['type' => 'non teaching']) }}">
                                         <i class="menu-dot"></i>
                                         Non-Teaching Staff
                                     </a>

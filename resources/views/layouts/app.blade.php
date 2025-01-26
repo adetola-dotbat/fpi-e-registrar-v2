@@ -21,7 +21,7 @@
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css">
-
+    @stack('styles')
 </head>
 
 <body class="font-sans antialiased">
@@ -40,14 +40,14 @@
 
             <main>
                 <div class="flex flex-wrap items-center gap-2 mb-5 md:justify-between">
-                    <h4 class="text-lg font-semibold text-default-900">Staffs</h4>
+                    <h4 class="text-lg font-semibold text-default-900">@yield('pageTitle')</h4>
 
                     <div class="items-center hidden gap-3 text-sm font-semibold md:flex">
                         <a href="#" class="text-sm font-medium text-default-700">Home</a>
 
                         <i class="flex-shrink-0 text-lg i-tabler-chevron-right text-default-500 rtl:rotate-180"></i>
 
-                        <a href="#" class="text-sm font-medium text-default-700">Staffs</a>
+                        <a href="#" class="text-sm font-medium text-default-700">@yield('pageTitle')</a>
                     </div>
                 </div>
 
