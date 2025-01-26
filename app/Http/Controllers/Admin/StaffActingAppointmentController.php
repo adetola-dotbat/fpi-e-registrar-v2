@@ -16,7 +16,7 @@ class StaffActingAppointmentController extends Controller
     public function view($id)
     {
         $data = [
-            'pageTitle' => 'Staff Acting Appointments',
+            'pageTitle' => 'Staff Acting Appointment',
             'user' => $this->staffService->getStaff($id),
             'actingAppointments' => $this->staffActingAppointmentService->allStaffActingAppointments($id),
         ];
@@ -41,6 +41,17 @@ class StaffActingAppointmentController extends Controller
             $this->staffActingAppointmentService->update($request->validated());
 
             return redirect()->back()->with("success", value: "Acting appointment details updated successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->staffActingAppointmentService->destroy($id);
+
+            return redirect()->back()->with("success", value: "Transfer deleted successfully");
         } catch (\Exception $ex) {
             return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
         }

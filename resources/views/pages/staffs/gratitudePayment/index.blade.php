@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -11,7 +12,7 @@
 
                 @includeIf('pages.shared._form_message')
 
-                <form class="flex flex-col gap-3" action="{{ route('admin.staff.gratitude.payment.store') }}" method="post">
+                <form class="flex flex-col gap-3" action="{{ route('admin.staff.gratuity.store') }}" method="post">
                     @csrf
                     @method('post')
                     <input type="text" name="user_id" hidden value="{{ $user->id }}">
@@ -151,8 +152,8 @@
                                         </td>
 
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
-                                                href="{{ route('admin.staff.gratitude.payment.destroy', $gratitudePayment->id) }}">Delete</a>
+                                            <a class="text-danger hover:text-primary-700"
+                                                href="{{ route('admin.staff.gratuity.destroy', $gratitudePayment->id) }}">Delete</a>
                                             <button type="button" class="btn bg-primary text-white edit-btn"
                                                 data-id="{{ $gratitudePayment->id }}"
                                                 data-date-of-payment="{{ $gratitudePayment->date_of_payment }}"
@@ -190,7 +191,7 @@
                     </button>
                 </div>
                 <form id="edit-gratitude-payment-form" method="POST"
-                    action="{{ route('admin.staff.gratitude.payment.update', 0) }}">
+                    action="{{ route('admin.staff.gratuity.update', 0) }}">
                     @csrf
                     @method('POST')
                     <div class="p-4 overflow-y-auto">

@@ -19,7 +19,9 @@ class UserService
             'emergencies',
             'staffBankDetails',
             'staffInstitutionsAttended',
-            'staffProfessionalDetails'
+            'staffProfessionalDetails',
+            'staffDocuments',
+            'staffLeaves'
         ])->find($id);
     }
 

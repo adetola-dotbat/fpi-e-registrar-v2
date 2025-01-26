@@ -15,6 +15,14 @@ class StaffPromotionController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffPromotionService $staffPromotionService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Staff Promotion',
+            'promotions' => $this->staffPromotionService->promotions(),
+        ];
+        return view('pages.staffs.promotion.promotions', $data);
+    }
     public function view($id)
     {
         $data = [
@@ -43,6 +51,17 @@ class StaffPromotionController extends Controller
             $this->staffPromotionService->update($request->validated());
 
             return redirect()->back()->with("success", value: "Promotion details updated successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->staffPromotionService->destroy($id);
+
+            return redirect()->back()->with("success", value: "Promotion deleted successfully");
         } catch (\Exception $ex) {
             return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
         }

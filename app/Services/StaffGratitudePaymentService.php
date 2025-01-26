@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\StaffGratitudePayment;
 use App\Models\StaffPromotion;
 use App\Models\StaffTransfer;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class StaffGratitudePaymentService extends UserService
 {
@@ -26,5 +27,14 @@ class StaffGratitudePaymentService extends UserService
         unset($data['id']);
 
         return $this->staffGratitudePayment->whereId($id)->update($data);
+    }
+
+    public function destroy($id)
+    {
+        if (!$this->staffGratitudePayment->whereId($id)->exists()) {
+            throw new ModelNotFoundException("Record  not found.");
+        }
+
+        $this->staffGratitudePayment->whereId($id)->delete();
     }
 }

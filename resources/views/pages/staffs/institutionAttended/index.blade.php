@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -56,14 +57,6 @@
                             Obtained</label>
                         <div class="md:col-span-3">
                             <input type="date" name="date_obtained" id="date_obtained" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <!-- Count -->
-                    <div class="grid items-center grid-cols-4 gap-6">
-                        <label for="count" class="inline-block mb-2 text-sm font-medium text-default-800">Count</label>
-                        <div class="md:col-span-3">
-                            <input type="number" name="count" id="count" class="form-input">
                         </div>
                     </div>
 
@@ -125,13 +118,18 @@
                                             {{ $institution->qualification }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $institution->certificate }}
+                                            <a href="{{ asset('upload/school_certificates/' . $institution->certificate) }}"
+                                                target="_blank"
+                                                class="btn btn-sm border-success text-success hover:bg-success hover:text-white"><i
+                                                    class="material-symbols-rounded">file_download</i> View
+                                                Document</a>
+
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                             {{ $institution->date_obtained }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.institution.attended.destroy', $institution->id) }}">Delete</a>
                                         </td>
                                     </tr>

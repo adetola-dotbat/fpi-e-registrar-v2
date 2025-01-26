@@ -4,11 +4,15 @@ namespace App\Services;
 
 use App\Models\StaffPromotion;
 use App\Models\StaffTransfer;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class StaffPromotionService extends UserService
 {
     public function __construct(protected StaffPromotion $staffPromotion) {}
-
+    public function promotions()
+    {
+        return $this->staffPromotion->latest()->get();
+    }
 
     public function staffPromotions($id)
     {
@@ -25,5 +29,14 @@ class StaffPromotionService extends UserService
         unset($data['id']);
 
         return $this->staffPromotion->whereId($id)->update($data);
+    }
+
+    public function destroy($id)
+    {
+        if (!$this->staffPromotion->whereId($id)->exists()) {
+            throw new ModelNotFoundException("Promotion record  not found.");
+        }
+
+        $this->staffPromotion->whereId($id)->delete();
     }
 }

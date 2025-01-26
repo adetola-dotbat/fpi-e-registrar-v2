@@ -27,9 +27,20 @@ class StaffController extends Controller
     public function view($id)
     {
         $data = [
+            'pageTitle' => 'Staff Profile',
             'user' => $this->staffService->getStaff($id),
         ];
         return view('pages.staffs.view', $data);
+    }
+
+    public function report()
+    {
+        $data = [
+            'pageTitle' => 'Staff List',
+            'users' => $this->staffService->all(),
+        ];
+
+        return view('pages.staffs.index', $data);
     }
 
     public function transferStaff($id)

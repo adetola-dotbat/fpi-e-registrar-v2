@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -121,7 +122,7 @@
                                             {{ $actingAppointment->rate_of_allowance }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.acting.appointment.destroy', $actingAppointment->id) }}">Delete</a>
                                             <button type="button" class="btn bg-primary text-white edit-btn"
                                                 data-id="{{ $actingAppointment->id }}"

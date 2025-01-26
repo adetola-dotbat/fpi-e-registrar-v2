@@ -9,8 +9,9 @@
             </button>
 
             <!-- Topbar Brand Logo -->
-            <a class='flex md:hidden' href='index.html'>
-                <img src="/assets/images/logo-sm.png" class="h-5" alt="Small logo">
+            <a class="flex md:hidden" href="index.html">
+                <img src="{{ asset('upload/passports/' . auth()->user()->passport) ?? '/assets/images/logo-sm.png' }}"
+                    class="h-5" alt="Small logo">
             </a>
         </div>
 

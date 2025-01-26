@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -153,7 +154,7 @@
                                             {{ $employment->employer_address }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.previous.employment.destroy', $employment->id) }}">Delete</a>
                                             <button type="button" class="btn bg-primary text-white edit-btn"
                                                 data-id="{{ $employment->id }}"

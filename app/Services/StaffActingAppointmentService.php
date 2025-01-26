@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\StaffActingAppointment;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class StaffActingAppointmentService extends UserService
 {
@@ -25,5 +25,14 @@ class StaffActingAppointmentService extends UserService
         unset($data['id']);
 
         return $this->staffActingAppointment->whereId($id)->update($data);
+    }
+
+    public function destroy($id)
+    {
+        if (!$this->staffActingAppointment->whereId($id)->exists()) {
+            throw new ModelNotFoundException("Record  not found.");
+        }
+
+        $this->staffActingAppointment->whereId($id)->delete();
     }
 }

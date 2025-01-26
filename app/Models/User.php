@@ -89,6 +89,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(StaffProfessionalDetails::class);
     }
+    public function staffDocuments(): HasMany
+    {
+        return $this->hasMany(StaffDocument::class);
+    }
+
+    public function staffLeaves(): HasMany
+    {
+        return $this->hasMany(StaffLeave::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -14,7 +14,7 @@ class StaffCommendationController extends Controller
     public function view($id)
     {
         $data = [
-            'pageTitle' => 'Staff Service',
+            'pageTitle' => 'Staff Commendation',
             'user' => $this->staffService->getStaff($id),
             'commendations' => $this->staffCommendationService->getStaffCommendations($id),
         ];

@@ -1,8 +1,10 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
+
 @push('styles')
 @endpush
 @section('content')
-    <div class="grid gap-6 mt-8 lg:grid-cols-2">
+    <div class="grid gap-6 mt-8 lg:grid-cols-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="mb-4 card-title">{{ $pageTitle }}</h4>

@@ -36,11 +36,21 @@ class StaffGratitudePaymentController extends Controller
 
     public function update(UpdateRequest $request)
     {
-
         try {
             $this->staffGratitudePaymentService->update($request->validated());
 
             return redirect()->back()->with("success", value: "Promotion details updated successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->staffGratitudePaymentService->destroy($id);
+
+            return redirect()->back()->with("success", value: "Gratuity deleted successfully");
         } catch (\Exception $ex) {
             return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
         }

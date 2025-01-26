@@ -29,7 +29,7 @@ class StaffDocumentController extends Controller
             $validatedData = $request->validated();
 
             if ($request->hasFile('file')) {
-                $filePath = FileHelper::uploadsImage('file', $request, 'documents');
+                $filePath = FileHelper::uploadsImage('file', $request, 'upload/documents');
                 $validatedData['file'] = $filePath;
             }
 

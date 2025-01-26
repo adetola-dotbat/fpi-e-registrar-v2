@@ -15,7 +15,7 @@ class StaffBankDetailController extends Controller
     public function view($id)
     {
         $data = [
-            'pageTitle' => 'Staff Service',
+            'pageTitle' => 'Bank Details',
             'user' => $this->staffService->getStaff($id),
             'bankDetails' => $this->staffBankDetailService->getStaffBankDetails($id),
         ];

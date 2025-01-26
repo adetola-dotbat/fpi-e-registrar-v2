@@ -1,15 +1,14 @@
 <li class="menu-item">
     <a class="{{ request()->routeIs('staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
         href="{{ route('staff.profile.view', auth()->id()) }}">
-        <i class="i-lucide-clipboard size-5"></i>
+        <i class="i-lucide-user-circle size-5"></i>
         Profile
     </a>
 </li>
 <li class="menu-item">
-    <a class="{{ request()->routeIs('staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
-        href="{{ route('admin.staff.promotion.index') }}">
+    <a class="{{ request()->routeIs('staff.education.view') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.education.view', auth()->id()) }}">
         <i class="i-lucide-clipboard size-5"></i>
-
         Education
     </a>
 </li>

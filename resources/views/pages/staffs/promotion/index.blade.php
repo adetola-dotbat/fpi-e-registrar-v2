@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -21,7 +22,7 @@
                             Number</label>
                         <div class="md:col-span-3">
                             <input type="text" readonly class="form-input" id="fileNumber"
-                                value="{{ $user->employee_file_no }}">
+                                value="{{ $user->employee_file_no }}" readonly>
                         </div>
                     </div>
                     <div class="grid items-center grid-cols-4 gap-6">
@@ -30,7 +31,7 @@
                             Department</label>
                         <div class="md:col-span-3">
                             <input type="text" name="current_department" class="form-input" id="currentDepartment"
-                                value="{{ $user->staffDetail->current_department }}">
+                                value="{{ $user->staffDetail->current_department }}" readonly>
                         </div>
                     </div>
                     <div class="grid items-center grid-cols-4 gap-6">
@@ -38,7 +39,7 @@
                             Position</label>
                         <div class="md:col-span-3">
                             <input type="text" name="current_position" class="form-input" id="currentPosition"
-                                value="{{ $user->staffDetail->current_post }}">
+                                value="{{ $user->staffDetail->current_post }}" readonly>
                         </div>
                     </div>
                     <div class="grid items-center grid-cols-4 gap-6">
@@ -46,7 +47,7 @@
                             Salary</label>
                         <div class="md:col-span-3">
                             <input type="text" name="current_position" class="form-input" id="currentPosition"
-                                value="{{ $user->staffDetail->salary }}">
+                                value="{{ $user->staffDetail->salary }}" readonly>
                         </div>
                     </div>
 
@@ -178,7 +179,7 @@
                                             {{ $promotion->date_of_appointment }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.promotion.destroy', $promotion->id) }}">Delete</a>
                                             <button type="button" class="btn bg-primary text-white edit-btn"
                                                 data-id="{{ $promotion->id }}"

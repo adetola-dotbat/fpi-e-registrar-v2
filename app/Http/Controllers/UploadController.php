@@ -282,4 +282,36 @@ class UploadController extends Controller
             return back()->with('error', 'Error importing data: ' . $e->getMessage());
         }
     }
+
+    public function uplodadDOcu(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|mimes:csv,txt',
+        ]);
+
+        try {
+            $file = $request->file('csv_file');
+            $path = $file->getRealPath();
+
+            $data = array_map('str_getcsv', file($path));
+            $header = array_shift($data);
+
+            foreach ($data as $row) {
+                $schoolData = array_combine($header, $row);
+
+                \App\Models\StaffDocument::create([
+                    'user_id' => $schoolData['user_id'] ?? null,
+
+                    'document' => $schoolData['document_name'] ?? null,
+                    'file' => $schoolData['document_file'] ?? null,
+
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+            return back()->with('success', 'CSV file uploaded and school attendance details imported successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error importing data: ' . $e->getMessage());
+        }
+    }
 }

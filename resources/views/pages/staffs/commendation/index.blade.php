@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -65,7 +66,7 @@
                                             {{ $commendation->commendation }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.commendation.destroy', $commendation->id) }}">Delete</a>
                                         </td>
 

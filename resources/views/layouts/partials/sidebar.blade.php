@@ -54,7 +54,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a class="{{ request()->routeIs('staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                        <a class="{{ request()->routeIs('admin.staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
                             href="{{ route('admin.staff.promotion.index') }}">
                             <i class="i-lucide-clipboard size-5"></i>
 
@@ -63,28 +63,28 @@
                     </li>
 
                     <li class="menu-item">
-                        <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
-                            href="{{ route('dashboard') }}">
+                        <a class="{{ request()->routeIs('admin.staff.leave.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.leave.index') }}">
                             <i class="i-lucide-table size-5"></i>
 
                             Leave Management
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
-                            href="{{ route('dashboard') }}">
+                    {{-- <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.report') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.report') }}">
                             <i class="i-lucide-user-circle size-5"></i>
                             Requests
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="px-3 py-2 text-xs font-medium uppercase text-default-500">App</li>
 
 
                     <li class="menu-item">
                         <a class='group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5'
-                            href='{{ route('admin.staff.index') }}'>
+                            href='{{ url('admin/staffs/reports') }}'>
                             <i class="i-lucide-user-circle size-5"></i>
                             Reports
                         </a>
@@ -113,12 +113,12 @@
                         </a>
                     </li>
                 @endif
-                @role('subadmin')
+                @role('subadmin|member')
                     @include('layouts.partials._sub-admin-sidebar')
                 @endrole
-                @role('member')
+                @if (auth()->user()->account_type != 'management')
                     @include('layouts.partials._staff-sidebar')
-                @endrole
+                @endif
             </ul>
         </div>
     </div>

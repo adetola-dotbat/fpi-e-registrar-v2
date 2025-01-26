@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $pageTitle)
 
 @section('content')
     @include('pages.staffs.partials.actions')
@@ -88,13 +89,18 @@
                                             {{ $professional->professional_name }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                            {{ $professional->certificate }}
+
+                                            <a href="{{ asset('upload/profession_body/' . $professional->certificate) }}"
+                                                target="_blank"
+                                                class="btn btn-sm border-success text-success hover:bg-success hover:text-white"><i
+                                                    class="material-symbols-rounded">file_download</i> View
+                                                Document</a>
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                             {{ $professional->year }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <a class="text-primary hover:text-primary-700"
+                                            <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.professional.details.destroy', $professional->id) }}">Delete</a>
                                         </td>
                                     </tr>

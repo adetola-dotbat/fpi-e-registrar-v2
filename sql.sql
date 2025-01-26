@@ -1,4 +1,4 @@
-UPDATE appointment
+UPDATE documents
 SET user_id = CASE employee_id
   WHEN 'FPI001' THEN '28a32f96-f2c2-49ff-bb78-c05508a60e69'
 WHEN 'FPI002' THEN '901d0fc9-4993-4580-8ea7-47abcadb5038'

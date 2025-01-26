@@ -13,6 +13,7 @@ class ProfileController extends Controller
     public function view($staffId)
     {
         $data = [
+            'pageTitle' => 'My Profile',
             'user' => $this->staffService->getStaff($staffId),
         ];
         return view('pages.staffs.view', $data);

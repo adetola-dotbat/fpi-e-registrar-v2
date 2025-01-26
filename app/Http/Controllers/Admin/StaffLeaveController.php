@@ -14,6 +14,15 @@ class StaffLeaveController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffLeaveService $staffLeaveService, protected LeaveTypeService $leaveTypeService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Staff Promotion',
+            'leaves' => $this->staffLeaveService->leaves(),
+        ];
+        return view('pages.staffs.leave.leaves', $data);
+    }
+
     public function view($id)
     {
         $data = [

@@ -24,7 +24,7 @@ class StaffInstitutionAttendedController extends Controller
         return view('pages.staffs.institutionAttended.index', $data);
     }
 
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
         try {
             $validatedData = $request->all();
@@ -54,7 +54,10 @@ class StaffInstitutionAttendedController extends Controller
     public function destroy($id)
     {
         try {
-            $this->staffInstitutionAttendedService->destroy($id);
+            $record = $this->staffInstitutionAttendedService->getStaffInstitutionAttended($id);
+            if (FileHelper::deleteImageFile('upload/school_certificates', $record->certificate)) {
+                $this->staffInstitutionAttendedService->destroy($id);
+            }
 
             return redirect()->back()->with("success", value: "Institution attended deleted successfully");
         } catch (\Exception $ex) {

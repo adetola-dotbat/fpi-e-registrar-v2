@@ -30,41 +30,43 @@ Route::get('/', function () {
 
 Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
     Route::prefix('staffs/')->name('staff.')->group(function () {
-        Route::get('', [StaffController::class, 'index'])->name('index');
-        Route::get('/{staff}', [StaffController::class, 'view'])->name('view');
-        Route::get('/destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
+        Route::get('all', [StaffController::class, 'index'])->name('index');
+        Route::get('reports/', [StaffController::class, 'report'])->name('report');
+        Route::get('{staff}', [StaffController::class, 'view'])->name('view');
+        Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
 
-        Route::prefix('transfer/')->group(function () {
-            // Route::get('', [StaffTransferController::class, 'index'])->name('index');
-            Route::get('{staff}', [StaffTransferController::class, 'view'])->name('transfer');
-            Route::post('', [StaffTransferController::class, 'store'])->name('transfer.store');
-            Route::get('{id}', [StaffTransferController::class, 'destroy'])->name('transfer.destroy');
-            Route::post('update', [StaffTransferController::class, 'update'])->name('transfer.update');
+        Route::prefix('transfer/')->name('transfer.')->group(function () {
+            Route::get('', [StaffTransferController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffTransferController::class, 'view'])->name('view');
+            Route::post('', [StaffTransferController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffTransferController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffTransferController::class, 'update'])->name('update');
         });
 
-        Route::prefix('promotion/')->group(function () {
-            Route::get('', [StaffPromotionController::class, 'index'])->name('promotion.index');
-            Route::get('{staff}', [StaffPromotionController::class, 'view'])->name('promotion');
-            Route::post('', [StaffPromotionController::class, 'store'])->name('promotion.store');
-            Route::get('{id}', [StaffPromotionController::class, 'destroy'])->name('promotion.destroy');
-            Route::post('update', [StaffPromotionController::class, 'update'])->name('promotion.update');
+        Route::prefix('promotions/')->name('promotion.')->group(function () {
+            Route::get('all', [StaffPromotionController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffPromotionController::class, 'view'])->name('view');
+            Route::post('', [StaffPromotionController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffPromotionController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffPromotionController::class, 'update'])->name('update');
         });
 
-        Route::prefix('acting-appointment/')->group(function () {
+        Route::prefix('acting-appointment/')->name('acting.appointment.')->group(function () {
             // Route::get('', [StaffActingAppointmentController::class, 'index'])->name('index');
-            Route::get('{staff}', [StaffActingAppointmentController::class, 'view'])->name('acting.appointment');
-            Route::post('', [StaffActingAppointmentController::class, 'store'])->name('acting.appointment.store');
-            Route::get('{id}', [StaffActingAppointmentController::class, 'destroy'])->name('acting.appointment.destroy');
-            Route::post('update', [StaffActingAppointmentController::class, 'update'])->name('acting.appointment.update');
+            Route::get('{staff}', [StaffActingAppointmentController::class, 'view'])->name('view');
+            Route::post('', [StaffActingAppointmentController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffActingAppointmentController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffActingAppointmentController::class, 'update'])->name('update');
         });
 
-        Route::prefix('gratitude-payment/')->group(function () {
-            // Route::get('', [StaffGratitudePaymentController::class, 'index'])->name('index');
-            Route::get('{staff}', [StaffGratitudePaymentController::class, 'view'])->name('gratitude.payment');
-            Route::post('', [StaffGratitudePaymentController::class, 'store'])->name('gratitude.payment.store');
-            Route::get('destroy/{id}', [StaffGratitudePaymentController::class, 'destroy'])->name('gratitude.payment.destroy');
-            Route::post('update', [StaffGratitudePaymentController::class, 'update'])->name('gratitude.payment.update');
+        Route::prefix('gratuity/')->name('gratuity.')->group(function () {
+            // Route::get('', [StaffActingAppointmentController::class, 'index'])->name('index');
+            Route::get('{staff}', [StaffGratitudePaymentController::class, 'view'])->name('view');
+            Route::post('', [StaffGratitudePaymentController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [StaffGratitudePaymentController::class, 'destroy'])->name('destroy');
+            Route::post('update', [StaffGratitudePaymentController::class, 'update'])->name('update');
         });
+
 
         Route::prefix('public-service/')->name('public.service.')->group(function () {
             // Route::get('', [StaffPublicServiceController::class, 'index'])->name('index');
@@ -118,7 +120,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         });
 
         Route::prefix('leaves/')->name('leave.')->group(function () {
-            // Route::get('', [StaffProfessionalDetailsController::class, 'index'])->name('index');
+            Route::get('all', [StaffLeaveController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffLeaveController::class, 'view'])->name('view');
             Route::post('', [StaffLeaveController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffLeaveController::class, 'destroy'])->name('destroy');
@@ -160,7 +162,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
 });
 
 Route::get('/upload-csv', [UploadController::class, 'showUploadForm'])->name('show.upload.form');
-Route::post('/upload-csv', [UploadController::class, 'uploadPreviousEmployment'])->name('upload.csv');
+Route::post('/upload-csv', [UploadController::class, 'uplodadDOcu'])->name('upload.csv');
 
 
 // Route::get('/dashboard', function () {

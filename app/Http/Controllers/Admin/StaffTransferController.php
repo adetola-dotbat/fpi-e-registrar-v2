@@ -17,6 +17,7 @@ class StaffTransferController extends Controller
     public function view($id)
     {
         $data = [
+            'pageTitle' => 'Staff Transfer',
             'user' => $this->staffService->getStaff($id),
             'transfers' => $this->staffTransferService->staffTransfers($id),
         ];
@@ -40,6 +41,17 @@ class StaffTransferController extends Controller
             $this->staffTransferService->update($request->validated());
 
             return redirect()->back()->with("success", value: "Transfer details updated successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->staffTransferService->destroy($id);
+
+            return redirect()->back()->with("success", value: "Transfer deleted successfully");
         } catch (\Exception $ex) {
             return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
         }

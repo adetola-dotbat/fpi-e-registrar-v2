@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class StaffLeaveService extends UserService
 {
     public function __construct(protected StaffLeave $staffLeave) {}
+    public function leaves()
+    {
+        return $this->staffLeave->latest()->get();
+    }
     public function getStaffLeaves($id)
     {
         return $this->staffLeave->where('user_id', $id)->get();
