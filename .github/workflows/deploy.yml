@@ -22,4 +22,4 @@ jobs:
           server: 192.64.84.226
           username: federalpolyilaro
           password: N3w5ever@ilar
-          server-dir: /public_html/fpieregistry.federalpolyilaro.edu.ng/public
+          server-dir: /public_html/fpieregistry.federalpolyilaro.edu.ng/public/
