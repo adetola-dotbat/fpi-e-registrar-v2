@@ -36,6 +36,8 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         Route::get('reports/', [StaffController::class, 'report'])->name('report');
         Route::get('{staff}', [StaffController::class, 'view'])->name('view');
         Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
+        Route::get('reset-password/{id}', [StaffController::class, 'resetPassword'])->name('reset_password');
+
 
         Route::prefix('transfer/')->name('transfer.')->group(function () {
             Route::get('', [StaffTransferController::class, 'index'])->name('index');

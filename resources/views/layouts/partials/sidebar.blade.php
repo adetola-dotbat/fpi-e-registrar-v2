@@ -97,7 +97,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a class='group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5'
                             href='app-calendar.html'>
                             <i class="i-lucide-calendar size-5"></i>
@@ -111,7 +111,7 @@
                             <i class="i-lucide-image size-5"></i>
                             Staff Cadre
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
                 @role('subadmin|member')
                     @include('layouts.partials._sub-admin-sidebar')

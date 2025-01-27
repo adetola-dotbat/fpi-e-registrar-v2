@@ -75,6 +75,18 @@ class StaffController extends Controller
         return view('pages.staffs.view', $data);
     }
 
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'password' => Hash::make('password'),
+            'reset_password' => false,
+        ]);
+
+        return redirect()->back()->with('success', 'Password has been reset successfully.');
+    }
+
     public function report()
     {
         $data = [
