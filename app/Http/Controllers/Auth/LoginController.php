@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -36,5 +36,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    protected function authenticated($request, $user)
+    {
+        if ($user->account_type !== 'management' && $user->reset_password != true) {
+            return redirect()->route('staff.reset.password');
+        }
+
+        return redirect($this->redirectTo);
     }
 }

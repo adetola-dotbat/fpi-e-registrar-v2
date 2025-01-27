@@ -23,7 +23,8 @@
 
     <!-- Name, Title, and Location -->
     <div class="pt-16 pb-4 text-center">
-        <h2 class="mb-2 text-xl font-semibold text-default-700"> {{ ucfirst($user->title) }}.
+        <h2 class="mb-2 text-xl font-semibold text-default-700">
+            {{ $user->title ? rtrim(ucfirst($user->title), '.') . '.' : '' }}
             {{ $user->fullname }}
         </h2>
         <p class="text-sm text-default-600">{{ $user->email }}</p>

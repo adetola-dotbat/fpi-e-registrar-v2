@@ -24,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        if ($user->account_type !== 'management' && $user->reset_password != true) {
+            return redirect()->route('staff.reset.password');
+        }
         $data = [
             'pageTitle' => 'Dashboard',
             'countNonAcademicStaff' => User::whereHas('staffDetail', function ($query) {

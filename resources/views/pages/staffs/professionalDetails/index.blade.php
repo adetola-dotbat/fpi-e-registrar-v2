@@ -33,6 +33,8 @@
                             class="inline-block mb-2 text-sm font-medium text-default-800">Certificate</label>
                         <div class="md:col-span-3">
                             <input type="file" name="certificate" id="certificate" class="form-input" required>
+                            <small class="text-danger">Only PDF, JPEG, and PNG files are accepted.</small>
+
                         </div>
                     </div>
 
@@ -75,6 +77,11 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         Year
                                     </th>
+                                    @hasanyrole('admin|subadmin')
+                                        <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                            Status
+                                        </th>
+                                    @endhasanyrole
                                     <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
                                         Action</th>
                                 </tr>
@@ -99,6 +106,18 @@
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                             {{ $professional->year }}
                                         </td>
+                                        @hasanyrole('admin|subadmin')
+                                            <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
+                                                @if ($professional->status === 'pending')
+                                                    <a href="{{ route('admin.staff.professional.details.approve', $professional->id) }}"
+                                                        class="btn btn-sm border-primary text-primary hover:bg-primary hover:text-white">
+                                                        Approve
+                                                    </a>
+                                                @else
+                                                    <span class="text-success font-medium">Approved</span>
+                                                @endif
+                                            </td>
+                                        @endhasanyrole
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                             <a class="text-danger hover:text-primary-700"
                                                 href="{{ route('admin.staff.professional.details.destroy', $professional->id) }}">Delete</a>

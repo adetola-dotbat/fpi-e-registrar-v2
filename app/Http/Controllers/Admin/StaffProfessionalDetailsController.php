@@ -6,6 +6,7 @@ use App\Helper\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Services\StaffProfessionalDetailsService;
 use App\Http\Requests\ProfessionalDetails\StoreRequest;
+use App\Models\StaffProfessionalDetails;
 use App\Services\StaffService;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class StaffProfessionalDetailsController extends Controller
             $validatedData = $request->all();
 
             if ($request->hasFile('certificate')) {
-                $filePath = FileHelper::uploadsImage('certificate', $request, 'profession_body');
+                $filePath = FileHelper::uploadsImage('certificate', $request, 'upload/profession_body');
                 $validatedData['certificate'] = $filePath;
             }
 
@@ -40,7 +41,14 @@ class StaffProfessionalDetailsController extends Controller
             return redirect()->back()->with("error", "Not successful, " . $ex->getMessage());
         }
     }
+    public function approve($id)
+    {
+        $profession = StaffProfessionalDetails::findOrFail($id);
+        $profession->status = 'approved';
+        $profession->save();
 
+        return redirect()->back()->with('success', 'Institution status updated to approved.');
+    }
     public function destroy($id)
     {
         try {

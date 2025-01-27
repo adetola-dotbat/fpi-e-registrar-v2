@@ -25,12 +25,14 @@ use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
     Route::prefix('staffs/')->name('staff.')->group(function () {
         Route::get('all', [StaffController::class, 'index'])->name('index');
+        Route::get('register', [StaffController::class, 'registerForm'])->name('register.form');
+        Route::post('register', [StaffController::class, 'registerStaff'])->name('register');
         Route::get('reports/', [StaffController::class, 'report'])->name('report');
         Route::get('{staff}', [StaffController::class, 'view'])->name('view');
         Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
@@ -109,6 +111,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
             Route::post('', [StaffInstitutionAttendedController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffInstitutionAttendedController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffInstitutionAttendedController::class, 'update'])->name('update');
+            Route::get('{id}/approve', [StaffInstitutionAttendedController::class, 'approve'])->name('approve');
         });
 
         Route::prefix('professional-details/')->name('professional.details.')->group(function () {
@@ -117,6 +120,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
             Route::post('', [StaffProfessionalDetailsController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffProfessionalDetailsController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffProfessionalDetailsController::class, 'update'])->name('update');
+            Route::get('{id}/approve', [StaffProfessionalDetailsController::class, 'approve'])->name('approve');
         });
 
         Route::prefix('leaves/')->name('leave.')->group(function () {

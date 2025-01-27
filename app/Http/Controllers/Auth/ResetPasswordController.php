@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -26,4 +27,20 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    protected function resetPassword($user, $password)
+    {
+        dd($user);
+        // Call the original method to reset the password
+        $user->password = bcrypt($password);
+
+        // Update the reset_password field to true
+        $user->reset_password = true;
+
+        // Save the updated user details
+        $user->save();
+
+        // Log the user in after password reset
+        $this->guard()->login($user);
+    }
 }

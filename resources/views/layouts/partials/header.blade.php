@@ -9,8 +9,9 @@
             </button>
 
             <!-- Topbar Brand Logo -->
-            <a class="flex md:hidden" href="index.html">
-                <img src="{{ asset('upload/passports/' . auth()->user()->passport) ?? '/assets/images/logo-sm.png' }}"
+            <a class="flex md:hidden">
+                <img src="{{ asset('upload/passports/' . auth()->user()->passport) }}" class="h-5" alt="Small logo">
+                <img src="{{ auth()->user()->passport ? asset('upload/passports/' . auth()->user()->passport) : asset('/assets/images/logo-sm.png') }}"
                     class="h-5" alt="Small logo">
             </a>
         </div>
@@ -33,7 +34,8 @@
             <div class="relative">
                 <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
                     <button type="button" class="hs-dropdown-toggle">
-                        <img src="/assets/images/users/avatar-8.jpg" alt="user-image" class="h-10 rounded-full">
+                        <img src="{{ auth()->user()->passport ? asset('upload/passports/' . auth()->user()->passport) : asset('/assets/images/logo-sm.png') }}"
+                            alt="user-image" class="h-10 rounded-full">
                     </button>
                     <div
                         class="hs-dropdown-menu duration mt-2 min-w-48 rounded-lg border border-default-200 bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 hidden">

@@ -23,8 +23,12 @@ class StaffService extends UserService
             'nextOfKins',
             'emergencies',
             'staffBankDetails',
-            'staffInstitutionsAttended',
-            'staffProfessionalDetails',
+            'staffInstitutionsAttended' => function ($query) {
+                $query->where('approved_status', 'approved');
+            },
+            'staffProfessionalDetails' => function ($query) {
+                $query->where('status', 'approved');
+            }
         ])->get();
     }
 

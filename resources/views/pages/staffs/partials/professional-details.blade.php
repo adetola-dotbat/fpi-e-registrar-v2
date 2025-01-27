@@ -9,7 +9,7 @@
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden border rounded-lg shadow">
                         <table class="min-w-full divide-y divide-default-200">
-                            @foreach ($user->staffProfessionalDetails as $detail)
+                            @foreach ($user->staffProfessionalDetails->where('status', 'approved') as $detail)
                                 <tbody class="divide-y divide-default-200">
                                     <tr>
                                         <td class="px-6 py-4 text-sm font-bold whitespace-nowrap text-default-800">

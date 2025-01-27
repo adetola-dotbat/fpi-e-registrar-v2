@@ -6,6 +6,7 @@ use App\Helper\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StaffInstitutionAttended\StoreRequest;
 use App\Http\Requests\StaffInstitutionAttended\UpdateRequest;
+use App\Models\StaffInstitutionAttended;
 use App\Services\StaffInstitutionAttendedService;
 use App\Services\StaffService;
 use Illuminate\Http\Request;
@@ -16,11 +17,13 @@ class StaffInstitutionAttendedController extends Controller
 
     public function view($id)
     {
+
         $data = [
             'pageTitle' => 'Institution Attended',
             'user' => $this->staffService->getStaff($id),
             'institutions' => $this->staffInstitutionAttendedService->getStaffInstitutionAttends($id),
         ];
+        // dd($data);
         return view('pages.staffs.institutionAttended.index', $data);
     }
 
@@ -41,6 +44,14 @@ class StaffInstitutionAttendedController extends Controller
             return redirect()->back()->with("error", "Not successful, " . $ex->getMessage());
         }
     }
+    public function approve($id)
+    {
+        $institution = StaffInstitutionAttended::findOrFail($id);
+        $institution->approved_status = 'approved';
+        $institution->save();
+
+        return redirect()->back()->with('success', 'Institution status updated to approved.');
+    }
     public function update(UpdateRequest $request)
     {
         try {
@@ -54,10 +65,8 @@ class StaffInstitutionAttendedController extends Controller
     public function destroy($id)
     {
         try {
-            $record = $this->staffInstitutionAttendedService->getStaffInstitutionAttended($id);
-            if (FileHelper::deleteImageFile('upload/school_certificates', $record->certificate)) {
-                $this->staffInstitutionAttendedService->destroy($id);
-            }
+
+            $this->staffInstitutionAttendedService->destroy($id);
 
             return redirect()->back()->with("success", value: "Institution attended deleted successfully");
         } catch (\Exception $ex) {

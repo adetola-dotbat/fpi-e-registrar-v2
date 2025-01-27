@@ -1,65 +1,92 @@
-@extends('layouts.app')
+<!doctype html>
+<html class="no-js" lang="">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Xmee | Login and Register Form Html Templates</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/login_assets/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/login_assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/login_assets/css/fontawesome-all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="/login_assets/font/flaticon.css">
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/login_assets/style.css">
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+<body>
+    <section class="fxt-template-animation fxt-template-layout4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-12 fxt-bg-wrap">
+                    <div class="fxt-bg-img" data-bg-image="/login_assets/img/figure/bg4-l.jpg">
+                        <div class="fxt-header">
+                            <div class="fxt-transformY-50 fxt-transition-delay-1">
+                                <a href="login-4.html" class="fxt-logo"><img src="/login_assets/img/fpi_logo.png"
+                                        alt="Logo"></a>
+                            </div>
+                            <div class="fxt-transformY-50 fxt-transition-delay-2">
+                                <h1>The Federal Polytechnic, Ilaro</h1>
+                            </div>
+                            <div class="fxt-transformY-50 fxt-transition-delay-3">
+                                <p style="font-size: larger">E-Registrar System</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 fxt-bg-color">
+                    <div class="fxt-content">
+                        <div class="fxt-form">
+                            <form method="POST" action="{{ route('staff.password.update') }}">
+                                @csrf
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input type="hidden" id="email" class="form-control" name="email"
+                                    placeholder="demo@federalpolyilaro.edu.ng" value="{{ auth()->user()->email }}"
+                                    required="required">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                <div class="form-group">
+                                    <label for="password" class="input-label">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password"
+                                        placeholder="********" required="required">
+                                    <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="input-label">Confirm Password</label>
+                                    <input id="password_confirmation" type="password" class="form-control"
+                                        name="password_confirmation" placeholder="********" required="required">
+                                    <i toggle="#password_confirmation"
+                                        class="fa fa-fw fa-eye toggle-password field-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="fxt-btn-fill">Reset Password</button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </section>
+    <!-- jquery-->
+    <script src="/login_assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/login_assets/js/bootstrap.min.js"></script>
+    <!-- Imagesloaded js -->
+    <script src="/login_assets/js/imagesloaded.pkgd.min.js"></script>
+    <!-- Validator js -->
+    <script src="/login_assets/js/validator.min.js"></script>
+    <!-- Custom Js -->
+    <script src="/login_assets/js/main.js"></script>
+
+</body>
+
+
+</html>

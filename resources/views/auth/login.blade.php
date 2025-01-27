@@ -1,95 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Xmee | Login and Register Form Html Templates</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/login_assets/img/favicon.png">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/login_assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/login_assets/css/fontawesome-all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="/login_assets/font/flaticon.css">
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/login_assets/style.css">
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
-            <h3 class="text-center mb-4">Login</h3>
+    <section class="fxt-template-animation fxt-template-layout4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-12 fxt-bg-wrap">
+                    <div class="fxt-bg-img" data-bg-image="/login_assets/img/figure/bg4-l.jpg">
+                        <div class="fxt-header">
+                            <div class="fxt-transformY-50 fxt-transition-delay-1">
+                                <a href="login-4.html" class="fxt-logo"><img src="/login_assets/img/fpi_logo.png"
+                                        alt="Logo"></a>
+                            </div>
+                            <div class="fxt-transformY-50 fxt-transition-delay-2">
+                                <h1>The Federal Polytechnic, Ilaro</h1>
+                            </div>
+                            <div class="fxt-transformY-50 fxt-transition-delay-3">
+                                <p style="font-size: larger">E-Registrar System</p>
+                            </div>
+                        </div>
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-
-                <div class="row mb-3">
-                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
+                <div class="col-md-6 col-12 fxt-bg-color">
+                    <div class="fxt-content">
+                        <div class="fxt-form">
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="email" class="input-label">Email Address</label>
+                                    <input type="email" id="email" class="form-control" name="email"
+                                        placeholder="demo@gmail.com" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="input-label">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password"
+                                        placeholder="********" required="required">
+                                    <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
+                                </div>
 
-                <div class="row mb-3">
-                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="current-password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6 offset-md-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                {{ old('remember') ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
+                                <div class="form-group">
+                                    <button type="submit" class="fxt-btn-fill">Log in</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
-                        </button>
-
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
-                    </div>
-                </div>
-            </form>
-            <!-- Forgot Password Link -->
-            <div class="text-center mt-3">
-                <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Password?</a>
-            </div>
-
-            <!-- Register Link -->
-            <div class="text-center mt-2">
-                <span>Don't have an account?</span>
-                <a href="{{ route('register') }}" class="text-decoration-none">Register</a>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- jquery-->
+    <script src="/login_assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/login_assets/js/bootstrap.min.js"></script>
+    <!-- Imagesloaded js -->
+    <script src="/login_assets/js/imagesloaded.pkgd.min.js"></script>
+    <!-- Validator js -->
+    <script src="/login_assets/js/validator.min.js"></script>
+    <!-- Custom Js -->
+    <script src="/login_assets/js/main.js"></script>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>
