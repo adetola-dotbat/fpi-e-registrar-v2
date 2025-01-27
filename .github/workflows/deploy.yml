@@ -15,7 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Upload files to cPanel via FTP
+      # Step 2: Set up PHP with Composer
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2" # Adjust PHP version to match your project
+          tools: composer
+
+      # Step 3: Install dependencies using Composer
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      # Step 4: Upload files to cPanel via FTP
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.2.0
         with:
