@@ -11,6 +11,13 @@ class StaffGratitudePaymentService extends UserService
 {
     public function __construct(protected StaffGratitudePayment $staffGratitudePayment) {}
 
+    public function gratitudePayments()
+    {
+        if (auth()->user()->account_type != 'management') {
+            return $this->staffGratitudePayment->where('user_id', auth()->id())->latest()->get();
+        }
+        return $this->staffGratitudePayment->latest()->get();
+    }
 
     public function allStaffGratitudePayments($id)
     {

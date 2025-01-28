@@ -9,6 +9,13 @@ class StaffActingAppointmentService extends UserService
 {
     public function __construct(protected StaffActingAppointment $staffActingAppointment) {}
 
+    public function actingAppointments()
+    {
+        if (auth()->user()->account_type != 'management') {
+            return $this->staffActingAppointment->where('user_id', auth()->id())->latest()->get();
+        }
+        return $this->staffActingAppointment->latest()->get();
+    }
 
     public function allStaffActingAppointments($id)
     {

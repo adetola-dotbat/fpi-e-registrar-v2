@@ -146,6 +146,9 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         Remark
                                     </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Date of appointment
+                                    </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
                                         Action</th>
                                 </tr>

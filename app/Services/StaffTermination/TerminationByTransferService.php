@@ -11,7 +11,10 @@ class TerminationByTransferService extends UserService
 {
     public function __construct(protected TerminationByTransfer $terminationByTransfer) {}
 
-
+    public function terminationByTransfers()
+    {
+        return $this->terminationByTransfer->latest()->get();
+    }
     public function getStaffTerminationByTransfers($id)
     {
         return $this->terminationByTransfer->where('user_id', $id)->latest()->first();

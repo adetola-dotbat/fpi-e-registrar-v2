@@ -40,7 +40,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
 
 
         Route::prefix('transfer/')->name('transfer.')->group(function () {
-            Route::get('', [StaffTransferController::class, 'index'])->name('index');
+            Route::get('all', [StaffTransferController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffTransferController::class, 'view'])->name('view');
             Route::post('', [StaffTransferController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffTransferController::class, 'destroy'])->name('destroy');
@@ -56,7 +56,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         });
 
         Route::prefix('acting-appointment/')->name('acting.appointment.')->group(function () {
-            // Route::get('', [StaffActingAppointmentController::class, 'index'])->name('index');
+            Route::get('all', [StaffActingAppointmentController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffActingAppointmentController::class, 'view'])->name('view');
             Route::post('', [StaffActingAppointmentController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffActingAppointmentController::class, 'destroy'])->name('destroy');
@@ -64,7 +64,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         });
 
         Route::prefix('gratuity/')->name('gratuity.')->group(function () {
-            // Route::get('', [StaffActingAppointmentController::class, 'index'])->name('index');
+            Route::get('all', [StaffGratitudePaymentController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffGratitudePaymentController::class, 'view'])->name('view');
             Route::post('', [StaffGratitudePaymentController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffGratitudePaymentController::class, 'destroy'])->name('destroy');
@@ -81,7 +81,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         });
 
         Route::prefix('commendation/')->name('commendation.')->group(function () {
-            // Route::get('', [StaffCommendationController::class, 'index'])->name('index');
+            Route::get('all', [StaffCommendationController::class, 'index'])->name('index');
             Route::get('{staff}', [StaffCommendationController::class, 'view'])->name('view');
             Route::post('', [StaffCommendationController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffCommendationController::class, 'destroy'])->name('destroy');
@@ -97,7 +97,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         });
 
         Route::prefix('termination/')->group(function () {
-            // Route::get('', [StaffTerminationController::class, 'index'])->name('index');
+            Route::get('all', [StaffTerminationController::class, 'index'])->name('termination.index');
             Route::get('{staff}', [StaffTerminationController::class, 'view'])->name('termination');
             Route::post('by-resignation', [TerminationByResignationController::class, 'store'])->name('termination.resignation.store');
             Route::post('by-death', [TerminationByDeathController::class, 'store'])->name('termination.death.store');

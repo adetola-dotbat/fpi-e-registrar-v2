@@ -5,7 +5,7 @@
 
     <div class="mt-3 overflow-hidden card">
         <div class="card-header">
-            <h4 class="card-title">Promotion Records</h4>
+            <h4 class="card-title">Transfer Records</h4>
         </div>
         <div class="p-4">
             <div class="overflow-x-auto custom-scroll">
@@ -17,25 +17,18 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         S/N</th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Department
+                                        Previous Department</th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Current Department
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Position
+                                        Previous Position
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Salary
+                                        Current Position
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Cadre
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Authority
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Remark
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Date of appointment
+                                        Effective Date
                                     </th>
                                     @role('admin')
                                         <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
@@ -45,44 +38,37 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-default-200">
-                                @foreach ($promotions as $promotion)
+                                @foreach ($transfers as $transfer)
                                     <tr>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
                                             {{ $loop->iteration }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                            {{ $promotion->new_department }}
-                                        </td>
-
-                                        <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->new_position }}
+                                            {{ $transfer->current_department }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->salary }}
+                                            {{ $transfer->new_department }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->cadre }}
+                                            {{ $transfer->current_position }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->authority }}
+                                            {{ $transfer->new_position }}
                                         </td>
                                         <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->remarks }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
-                                            {{ $promotion->date_of_appointment }}
+                                            {{ $transfer->effective_date }}
                                         </td>
                                         @role('admin')
                                             <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                                 <a class="text-danger hover:text-primary-700"
-                                                    href="{{ route('admin.staff.promotion.destroy', $promotion->id) }}">Delete</a>
-                                                <a href="{{ route('admin.staff.promotion.view', $promotion->user_id) }}"
+                                                    href="{{ route('admin.staff.transfer.destroy', $transfer->id) }}">Delete</a>
+
+                                                <a href="{{ route('admin.staff.transfer.view', $transfer->user_id) }}"
                                                     class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
                                                     View Profile
                                                 </a>
                                             </td>
                                         @endrole
-
                                     </tr>
                                 @endforeach
                             </tbody>

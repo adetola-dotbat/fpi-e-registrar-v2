@@ -13,10 +13,18 @@ class StaffGratitudePaymentController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffGratitudePaymentService $staffGratitudePaymentService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Gratuity Payment',
+            'gratitudePayments' => $this->staffGratitudePaymentService->gratitudePayments(),
+        ];
+        return view('pages.staffs.gratitudePayment.gratuities', $data);
+    }
     public function view($id)
     {
         $data = [
-            'pageTitle' => 'Staff Gratide Payment',
+            'pageTitle' => 'Staff Gratuity Payment',
             'user' => $this->staffService->getStaff($id),
             'gratitudePayments' => $this->staffGratitudePaymentService->allStaffGratitudePayments($id),
         ];

@@ -79,7 +79,8 @@
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
                                             @if ($document->file)
                                                 <div class="hs-tooltip">
-                                                    <a href="{{ asset('documents/' . $document->file) }}" target="_blank"
+                                                    <a href="{{ asset('upload/documents/' . $document->file) }}"
+                                                        target="_blank"
                                                         class="text-primary-500 hover:underline group relative"
                                                         data-fc-placement="bottom">
                                                         <i class="i-tabler-external-link text-success"></i>

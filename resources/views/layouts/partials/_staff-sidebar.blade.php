@@ -20,6 +20,46 @@
         Services
     </a>
 </li>
+<li class="px-3 py-2 text-xs font-medium uppercase text-default-500">Records</li>
+
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.transfer.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.transfer.index', auth()->id()) }}">
+        <i class="i-lucide-clipboard size-5"></i>
+        Transfer
+    </a>
+</li>
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.promotion.index', auth()->id()) }}">
+        <i class="i-lucide-clipboard size-5"></i>
+        Promotion
+    </a>
+</li>
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.acting.appointment.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.acting.appointment.index', auth()->id()) }}">
+        <i class="i-lucide-clipboard size-5"></i>
+        Acting Appointment
+    </a>
+</li>
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.gratuity.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.gratuity.index') }}">
+        <i class="i-lucide-clipboard size-5"></i>
+
+        Gratuity
+    </a>
+</li>
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.commendation.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.commendation.index') }}">
+        <i class="i-lucide-clipboard size-5"></i>
+
+        Commendation
+    </a>
+</li>
+
 <li class="menu-item">
     <a class="{{ request()->routeIs('staff.leave.view') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
         href="{{ route('staff.leave.view', auth()->id()) }}">

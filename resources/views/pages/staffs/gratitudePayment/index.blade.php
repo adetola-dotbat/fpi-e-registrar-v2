@@ -86,7 +86,7 @@
     </div>
     <div class="mt-3 overflow-hidden card">
         <div class="card-header">
-            <h4 class="card-title">Promotion Records</h4>
+            <h4 class="card-title">Gratuity Records</h4>
         </div>
         <div class="p-4">
             <div class="overflow-x-auto custom-scroll">

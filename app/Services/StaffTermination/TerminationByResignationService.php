@@ -11,6 +11,10 @@ class TerminationByResignationService extends UserService
 {
     public function __construct(protected TerminationByResignation $terminationByResignation) {}
 
+    public function terminationByResignations()
+    {
+        return $this->terminationByResignation->latest()->get();
+    }
 
     public function getStaffTerminationByResignations($id)
     {

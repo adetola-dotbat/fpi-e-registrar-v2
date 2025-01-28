@@ -18,7 +18,16 @@ class StaffTerminationController extends Controller
         protected TerminationByResignationService $terminationByResignationService,
         protected TerminationByTransferService $terminationByTransferService
     ) {}
-
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Terminations',
+            'terminationByDeaths' => $this->terminationByDeathService->terminationByDeaths(),
+            'terminationByResignations' => $this->terminationByResignationService->terminationByResignations(),
+            'terminationByTransfers' => $this->terminationByTransferService->terminationByTransfers(),
+        ];
+        return view('pages.staffs.termination.terminations', $data);
+    }
     public function view($id)
     {
         $data = [

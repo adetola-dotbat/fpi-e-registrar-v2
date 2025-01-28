@@ -11,6 +11,15 @@ class StaffCommendationController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffCommendationService $staffCommendationService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Commendations',
+            'commendations' => $this->staffCommendationService->commendations(),
+        ];
+        return view('pages.staffs.commendation.commendations', $data);
+    }
+
     public function view($id)
     {
         $data = [

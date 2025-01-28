@@ -10,7 +10,13 @@ class StaffCommendationService extends UserService
 {
     public function __construct(protected StaffCommendation $staffCommendation) {}
 
-
+    public function commendations()
+    {
+        if (auth()->user()->account_type != 'management') {
+            return $this->staffCommendation->where('user_id', auth()->id())->latest()->get();
+        }
+        return $this->staffCommendation->latest()->get();
+    }
     public function getStaffCommendations($id)
     {
         return $this->staffCommendation->where('user_id', $id)->get();

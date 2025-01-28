@@ -9,6 +9,13 @@ class StaffTransferService extends UserService
 {
     public function __construct(protected StaffTransfer $staffTransfer) {}
 
+    public function transfers()
+    {
+        if (auth()->user()->account_type != 'management') {
+            return $this->staffTransfer->where('user_id', auth()->id())->latest()->get();
+        }
+        return $this->staffTransfer->latest()->get();
+    }
 
     public function staffTransfers($id)
     {

@@ -14,6 +14,14 @@ class StaffTransferController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffTransferService $staffTransferService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Transfer',
+            'transfers' => $this->staffTransferService->transfers(),
+        ];
+        return view('pages.staffs.transfer.transfers', $data);
+    }
     public function view($id)
     {
         $data = [

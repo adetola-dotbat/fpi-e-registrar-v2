@@ -13,6 +13,14 @@ class StaffActingAppointmentController extends Controller
 {
     public function __construct(protected StaffService $staffService, protected StaffActingAppointmentService $staffActingAppointmentService) {}
 
+    public function index()
+    {
+        $data = [
+            'pageTitle' => 'Acting Appointments',
+            'actingAppointments' => $this->staffActingAppointmentService->actingAppointments(),
+        ];
+        return view('pages.staffs.actingAppointment.appointments', $data);
+    }
     public function view($id)
     {
         $data = [

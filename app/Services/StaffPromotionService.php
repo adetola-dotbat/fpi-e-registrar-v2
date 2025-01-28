@@ -11,6 +11,9 @@ class StaffPromotionService extends UserService
     public function __construct(protected StaffPromotion $staffPromotion) {}
     public function promotions()
     {
+        if (auth()->user()->account_type != 'management') {
+            return $this->staffPromotion->where('user_id', auth()->id())->latest()->get();
+        }
         return $this->staffPromotion->latest()->get();
     }
 

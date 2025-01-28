@@ -52,13 +52,57 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="px-3 py-2 text-xs font-medium uppercase text-default-500">Management</li>
+
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.transfer.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.transfer.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Transfers
+                        </a>
+                    </li>
 
                     <li class="menu-item">
                         <a class="{{ request()->routeIs('admin.staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
                             href="{{ route('admin.staff.promotion.index') }}">
                             <i class="i-lucide-clipboard size-5"></i>
 
-                            Promotion Management
+                            Promotions
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.acting.appointment.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.acting.appointment.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Acting Appointments
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.gratuity.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.gratuity.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Gratuities
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.commendation.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.commendation.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Commendations
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.termination.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.termination.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Terminations
                         </a>
                     </li>
 
@@ -67,7 +111,7 @@
                             href="{{ route('admin.staff.leave.index') }}">
                             <i class="i-lucide-table size-5"></i>
 
-                            Leave Management
+                            Leaves
                         </a>
                     </li>
 

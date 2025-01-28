@@ -11,7 +11,10 @@ class TerminationByDeathService extends UserService
 {
     public function __construct(protected TerminationByDeath $terminationByDeath) {}
 
-
+    public function terminationByDeaths()
+    {
+        return $this->terminationByDeath->latest()->get();
+    }
     public function getStaffTerminationByDeaths($id)
     {
         return $this->terminationByDeath->where('user_id', $id)->latest()->first();

@@ -17,7 +17,7 @@ class StaffLeaveController extends Controller
     public function index()
     {
         $data = [
-            'pageTitle' => 'Staff Promotion',
+            'pageTitle' => 'Leaves',
             'leaves' => $this->staffLeaveService->leaves(),
         ];
         return view('pages.staffs.leave.leaves', $data);
