@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('staff_leaves', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-
-            $table->foreignUuid('user_id'); // Foreign key to the users table
+            $table->foreignUuid('user_id');
             $table->date('date_leave_requested');
             $table->date('date_resume_duty');
             $table->text('leave_address')->nullable();
             $table->text('recommend')->nullable();
-            $table->foreignUuid('leave_type_id'); // Foreign key to the leave_types table
+            $table->foreignUuid('leave_type_id');
             $table->text('reasons')->nullable();
             $table->string('status');
 

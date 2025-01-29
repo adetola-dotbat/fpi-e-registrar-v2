@@ -43,11 +43,25 @@ class StaffProfessionalDetailsController extends Controller
     }
     public function approve($id)
     {
-        $profession = StaffProfessionalDetails::findOrFail($id);
-        $profession->status = 'approved';
-        $profession->save();
+        try {
 
-        return redirect()->back()->with('success', 'Institution status updated to approved.');
+            $this->staffProfessionalDetailsService->approve($id);
+
+            return redirect()->back()->with("success", value: "Record status updated to approved successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+    public function decline($id)
+    {
+        try {
+
+            $this->staffProfessionalDetailsService->decline($id);
+
+            return redirect()->back()->with("success", value: "Record declined successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
     }
     public function destroy($id)
     {

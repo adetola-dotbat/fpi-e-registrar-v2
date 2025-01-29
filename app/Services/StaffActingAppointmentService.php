@@ -3,7 +3,10 @@
 namespace App\Services;
 
 use App\Models\StaffActingAppointment;
+use App\Notifications\ActingAppointmentNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffActingAppointmentService extends UserService
 {
@@ -21,9 +24,20 @@ class StaffActingAppointmentService extends UserService
     {
         return $this->staffActingAppointment->where('user_id', $id)->get();
     }
+
     public function store($data)
     {
-        return $this->staffActingAppointment->create($data);
+        return DB::transaction(function () use ($data) {
+            try {
+
+                $actingAppointment = $this->staffActingAppointment->create($data);
+                $user = $actingAppointment->user;
+                $user->notify(new ActingAppointmentNotification());
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
     }
 
     public function update($data)

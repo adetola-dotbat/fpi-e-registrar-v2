@@ -94,7 +94,7 @@ class StaffController extends Controller
             'users' => $this->staffService->all(),
         ];
 
-        return view('pages.staffs.index', $data);
+        return view('pages.staffs.reports', $data);
     }
 
     public function transferStaff($id)

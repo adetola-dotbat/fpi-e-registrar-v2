@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Models\StaffPromotion;
 use App\Models\StaffTransfer;
+use App\Notifications\PromotionNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffPromotionService extends UserService
 {
@@ -21,11 +24,21 @@ class StaffPromotionService extends UserService
     {
         return $this->staffPromotion->where('user_id', $id)->get();
     }
+
     public function store($data)
     {
-        return $this->staffPromotion->create($data);
-    }
+        return DB::transaction(function () use ($data) {
+            try {
 
+                $promotion = $this->staffPromotion->create($data);
+                $user = $promotion->user;
+                $user->notify(new PromotionNotification());
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
+    }
     public function update($data)
     {
         $id = $data['id'];

@@ -6,7 +6,7 @@ enum ApproveStatusEnum: string
 {
     case APPROVED = 'approved';
     case PENDING = 'pending';
-    case DECLINE = 'decline';
+    case DECLINED = 'declined';
 
     public static function toArray(): array
     {

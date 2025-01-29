@@ -46,11 +46,25 @@ class StaffInstitutionAttendedController extends Controller
     }
     public function approve($id)
     {
-        $institution = StaffInstitutionAttended::findOrFail($id);
-        $institution->approved_status = 'approved';
-        $institution->save();
+        try {
 
-        return redirect()->back()->with('success', 'Institution status updated to approved.');
+            $this->staffInstitutionAttendedService->approve($id);
+
+            return redirect()->back()->with("success", value: "Institution status updated to approved successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
+    }
+    public function decline($id)
+    {
+        try {
+
+            $this->staffInstitutionAttendedService->decline($id);
+
+            return redirect()->back()->with("success", value: "Institution status declined successfully");
+        } catch (\Exception $ex) {
+            return redirect()->back()->with("error", "Not successful," . $ex->getMessage());
+        }
     }
     public function update(UpdateRequest $request)
     {

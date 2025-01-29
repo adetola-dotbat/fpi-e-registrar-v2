@@ -16,7 +16,63 @@
             </a>
         </div>
 
+
+
+
+
         <div class="flex items-center gap-5">
+            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                <button type="button"
+                    class="hs-dropdown-toggle inline-flex items-center p-2 rounded-full bg-white border border-default-200 hover:bg-primary/15 hover:text-primary transition-all">
+                    <i class="i-lucide-bell text-2xl"></i>
+                    @if (auth()->user()->unreadNotifications->count() > 0)
+                        <span
+                            class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
+                            {{ auth()->user()->unreadNotifications->count() }}
+                        </span>
+                    @endif
+                </button>
+
+                <!-- Dropdown menu -->
+                <div
+                    class="hs-dropdown-menu duration mt-2 w-full max-w-sm rounded-lg border border-default-200 bg-white opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 hidden">
+                    <div class="block px-4 py-2 font-medium text-center text-default-700 rounded-t-lg bg-default-50">
+                        Notifications
+                        <form action="{{ route('notifications.markAllRead') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-xs text-primary hover:underline">
+                                Mark All as Read
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="divide-y divide-default-100">
+                        @forelse(auth()->user()->unreadNotifications as $notification)
+                            <a href="{{ route('notifications.markAsRead', $notification->id) }}"
+                                class="flex px-4 py-3 hover:bg-default-100">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-full w-11 h-11 bg-gray-200 flex items-center justify-center">
+                                        <i class="i-tabler-bell text-xl text-gray-600"></i>
+                                    </div>
+                                </div>
+                                <div class="w-full ps-3">
+                                    <div class="text-default-500 text-sm mb-1.5">
+                                        {{ $notification->data['message'] ?? 'You have a new notification.' }}
+                                    </div>
+                                    <div class="text-xs text-primary">
+                                        {{ $notification->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                            </a>
+                        @empty
+                            <div class="px-4 py-3 text-default-500 text-sm text-center">
+                                No new notifications.
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Fullscreen Toggle Button -->
             <div class="hidden md:flex">

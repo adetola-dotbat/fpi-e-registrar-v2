@@ -17,7 +17,10 @@ class StaffService extends UserService
             });
         }
 
-        return $query->with([
+        return $query->where(function ($query) {
+            $query->where('employee_file_no', '!=', null)
+                ->where('employee_file_no', '!=', 'NULL');
+        })->with([
             'staffDetail',
             'previousEmployments',
             'nextOfKins',

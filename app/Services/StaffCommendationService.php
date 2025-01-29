@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\Models\StaffCommendation;
+use App\Notifications\CommendationNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffCommendationService extends UserService
 {
@@ -30,9 +32,20 @@ class StaffCommendationService extends UserService
 
         return $this->staffCommendation->find($id);
     }
+
     public function store($data)
     {
-        return $this->staffCommendation->create($data);
+        return DB::transaction(function () use ($data) {
+            try {
+
+                $commendation = $this->staffCommendation->create($data);
+                $user = $commendation->user;
+                $user->notify(new CommendationNotification());
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
     }
 
     public function destroy($id)

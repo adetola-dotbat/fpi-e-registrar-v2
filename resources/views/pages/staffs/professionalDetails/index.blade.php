@@ -77,11 +77,11 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                         Year
                                     </th>
-                                    @hasanyrole('admin|subadmin')
-                                        <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                            Status
-                                        </th>
-                                    @endhasanyrole
+                                    {{-- @hasanyrole('admin|subadmin') --}}
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Status
+                                    </th>
+                                    {{-- @endhasanyrole --}}
                                     <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
                                         Action</th>
                                 </tr>
@@ -113,9 +113,19 @@
                                                         class="btn btn-sm border-primary text-primary hover:bg-primary hover:text-white">
                                                         Approve
                                                     </a>
-                                                @else
+                                                    <a href="{{ route('admin.staff.professional.details.decline', $professional->id) }}"
+                                                        class="btn btn-sm border-danger text-danger hover:bg-danger hover:text-white">
+                                                        Decline
+                                                    </a>
+                                                @elseif ($professional->status === 'approved')
                                                     <span class="text-success font-medium">Approved</span>
+                                                @else
+                                                    <span class="text-danger font-medium">Declined</span>
                                                 @endif
+                                            </td>
+                                        @else
+                                            <td class="px-6 py-4 font-bold text-sm whitespace-nowrap text-default-800">
+                                                {{ Str::title($professional->status) }}
                                             </td>
                                         @endhasanyrole
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">

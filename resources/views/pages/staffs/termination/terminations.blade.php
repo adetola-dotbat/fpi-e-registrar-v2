@@ -7,7 +7,7 @@
         <div class="card-header">
             <h4 class="card-title">Service Termination Records</h4>
         </div>
-        @if (!is_null($terminationByResignations))
+        @if ($terminationByResignations->isNotEmpty())
             <div class="p-4">
                 <div class="overflow-x-auto custom-scroll">
                     <div class="inline-block min-w-full align-middle">
@@ -33,8 +33,10 @@
                                         <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                             Contract Gratuity
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
-                                            Action</th>
+                                        @role('admin')
+                                            <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
+                                                Action</th>
+                                        @endrole
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-default-200">
@@ -58,12 +60,14 @@
                                             <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                                 {{ $terminationByResignation->contract_gratuity }}
                                             </td>
-                                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                                <a href="{{ route('admin.staff.termination', $terminationByResignation->user_id) }}"
-                                                    class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
-                                                    View Profile
-                                                </a>
-                                            </td>
+                                            @role('admin')
+                                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
+                                                    <a href="{{ route('admin.staff.termination', $terminationByResignation->user_id) }}"
+                                                        class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
+                                                        View Profile
+                                                    </a>
+                                                </td>
+                                            @endrole
                                         </tr>
                                     @endforeach
 
@@ -74,7 +78,7 @@
                 </div>
             </div>
         @endif
-        @if (!is_null($terminationByDeaths))
+        @if ($terminationByDeaths->isNotEmpty())
             <div class="p-4">
                 <div class="overflow-x-auto custom-scroll">
                     <div class="inline-block min-w-full align-middle">
@@ -100,8 +104,10 @@
                                         <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                             Orphan Pension From
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
-                                            Action</th>
+                                        @role('admin')
+                                            <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
+                                                Action</th>
+                                        @endrole
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-default-200">
@@ -125,12 +131,14 @@
                                             <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                                 {{ $terminationByDeath->orphan_pension_from }}
                                             </td>
-                                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                                <a href="{{ route('admin.staff.termination', $terminationByDeath->user_id) }}"
-                                                    class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
-                                                    View Profile
-                                                </a>
-                                            </td>
+                                            @role('admin')
+                                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
+                                                    <a href="{{ route('admin.staff.termination', $terminationByDeath->user_id) }}"
+                                                        class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
+                                                        View Profile
+                                                    </a>
+                                                </td>
+                                            @endrole
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -140,7 +148,7 @@
                 </div>
             </div>
         @endif
-        @if (!is_null($terminationByTransfers))
+        @if ($terminationByTransfers->isNotEmpty())
             <div class="p-4">
                 <div class="overflow-x-auto custom-scroll">
                     <div class="inline-block min-w-full align-middle">
@@ -157,8 +165,10 @@
                                         <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
                                             Aggregate Service
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
-                                            Action</th>
+                                        @role('admin')
+                                            <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
+                                                Action</th>
+                                        @endrole
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-default-200">
@@ -173,12 +183,14 @@
                                             <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                                 {{ $terminationByTransfer->aggregate_service }}
                                             </td>
-                                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                                <a href="{{ route('admin.staff.termination', $terminationByDeath->user_id) }}"
-                                                    class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
-                                                    View Profile
-                                                </a>
-                                            </td>
+                                            @role('admin')
+                                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
+                                                    <a href="{{ route('admin.staff.termination', $terminationByDeath->user_id) }}"
+                                                        class="btn btn-sm border-success text-success hover:bg-success hover:text-white">
+                                                        View Profile
+                                                    </a>
+                                                </td>
+                                            @endrole
                                         </tr>
                                     @endforeach
                                 </tbody>

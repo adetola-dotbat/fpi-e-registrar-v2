@@ -5,7 +5,10 @@ namespace App\Services;
 use App\Models\StaffGratitudePayment;
 use App\Models\StaffPromotion;
 use App\Models\StaffTransfer;
+use App\Notifications\GratuityPaymentNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffGratitudePaymentService extends UserService
 {
@@ -25,7 +28,17 @@ class StaffGratitudePaymentService extends UserService
     }
     public function store($data)
     {
-        return $this->staffGratitudePayment->create($data);
+        return DB::transaction(function () use ($data) {
+            try {
+
+                $gratuity = $this->staffGratitudePayment->create($data);
+                $user = $gratuity->user;
+                $user->notify(new GratuityPaymentNotification());
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
     }
 
     public function update($data)

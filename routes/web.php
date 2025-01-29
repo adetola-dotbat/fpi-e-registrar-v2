@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\StaffTermination\TerminationByTransferController;
 use App\Http\Controllers\Admin\StaffTransferController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +115,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
             Route::get('destroy/{id}', [StaffInstitutionAttendedController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffInstitutionAttendedController::class, 'update'])->name('update');
             Route::get('{id}/approve', [StaffInstitutionAttendedController::class, 'approve'])->name('approve');
+            Route::get('{id}/decline', [StaffInstitutionAttendedController::class, 'decline'])->name('decline');
         });
 
         Route::prefix('professional-details/')->name('professional.details.')->group(function () {
@@ -123,6 +125,7 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
             Route::get('destroy/{id}', [StaffProfessionalDetailsController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffProfessionalDetailsController::class, 'update'])->name('update');
             Route::get('{id}/approve', [StaffProfessionalDetailsController::class, 'approve'])->name('approve');
+            Route::get('{id}/decline', [StaffProfessionalDetailsController::class, 'decline'])->name('decline');
         });
 
         Route::prefix('leaves/')->name('leave.')->group(function () {
@@ -131,6 +134,8 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
             Route::post('', [StaffLeaveController::class, 'store'])->name('store');
             Route::get('destroy/{id}', [StaffLeaveController::class, 'destroy'])->name('destroy');
             Route::post('update', [StaffLeaveController::class, 'update'])->name('update');
+            Route::get('{id}/approve', [StaffLeaveController::class, 'approve'])->name('approve');
+            Route::get('{id}/decline', [StaffLeaveController::class, 'decline'])->name('decline');
         });
 
         Route::prefix('previous-employment/')->name('previous.employment.')->group(function () {
@@ -166,6 +171,9 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         Route::post('update', [UserController::class, 'update'])->name('update');
     });
 });
+
+Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllRead');
+Route::get('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 Route::get('/upload-csv', [UploadController::class, 'showUploadForm'])->name('show.upload.form');
 Route::post('/upload-csv', [UploadController::class, 'uplodadDOcu'])->name('upload.csv');

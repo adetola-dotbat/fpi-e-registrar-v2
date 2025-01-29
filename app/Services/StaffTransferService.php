@@ -3,7 +3,10 @@
 namespace App\Services;
 
 use App\Models\StaffTransfer;
+use App\Notifications\TransferNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffTransferService extends UserService
 {
@@ -21,10 +24,22 @@ class StaffTransferService extends UserService
     {
         return $this->staffTransfer->where('user_id', $id)->get();
     }
+
     public function store($data)
     {
-        return $this->staffTransfer->create($data);
+        return DB::transaction(function () use ($data) {
+            try {
+
+                $transfer = $this->staffTransfer->create($data);
+                $user = $transfer->user;
+                $user->notify(new TransferNotification());
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
     }
+
 
     public function update($data)
     {

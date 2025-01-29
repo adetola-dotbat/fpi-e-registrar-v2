@@ -2,9 +2,13 @@
 
 namespace App\Services;
 
+use App\Enums\ApproveStatusEnum;
 use App\Models\StaffLeave;
+use App\Models\User;
+use App\Notifications\SendLeaveApprovalNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StaffLeaveService extends UserService
 {
@@ -24,10 +28,31 @@ class StaffLeaveService extends UserService
         }
         return $this->staffLeave->find($id);
     }
+
     public function store($data)
     {
-        return $this->staffLeave->create($data);
+        return DB::transaction(function () use ($data) {
+            try {
+                $user = auth()->user();
+
+                if ($user->hasAnyRole(['admin', 'subadmin'])) {
+                    $data['status'] = ApproveStatusEnum::APPROVED->value;
+                } else {
+
+                    $admins = User::role(['admin', 'subadmin'])->get();
+                    foreach ($admins as $admin) {
+                        $admin->notify(new SendLeaveApprovalNotification($user, 'Leave'));
+                    }
+                }
+
+                return $this->staffLeave->create($data);
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                Log::error($ex->getMessage());
+            }
+        });
     }
+
     public function update($data)
     {
         $id = $data['id'];
