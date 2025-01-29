@@ -53,4 +53,5 @@ jobs:
           password: N3w5ever@ilar
           script: |
             cd /public_html/fpieregistry.federalpolyilaro.edu.ng/
+            composer install
             php artisan migrate --force
