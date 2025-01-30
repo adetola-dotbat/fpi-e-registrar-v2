@@ -116,16 +116,16 @@
                                             <a class="text-success hover:text-primary-700"
                                                 href="{{ route('admin.staff.view', $user->id) }}"><i
                                                     class="i-tabler-external-link text-success"></i></a>
-                                            <a class="text-danger hover:text-primary-700"
-                                                href="{{ route('admin.staff.destroy', $user->id) }}"><i
-                                                    class="material-symbols-rounded">delete</i></a>
-                                            @role('admin')
+                                            {{-- @role('admin')
+                                                <a class="text-danger hover:text-primary-700"
+                                                    href="{{ route('admin.staff.destroy', $user->id) }}"><i
+                                                        class="material-symbols-rounded">delete</i></a>
                                                 <a class="text-info hover:text-primary-700"
                                                     href="{{ route('admin.staff.reset_password', $user->id) }}"
                                                     onclick="return confirm('Are you sure you want to reset the password for this user?')">
                                                     <i class="material-symbols-rounded">restart_alt</i> Reset Password
                                                 </a>
-                                            @endrole
+                                            @endrole --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -161,6 +161,10 @@
                 paging: true,
                 searching: true,
                 ordering: true,
+                pageLength: 20, // Default records per page
+                lengthMenu: [
+                    [10, 20, 50, 100]
+                ],
                 columnDefs: [{
                     orderable: false,
                     targets: [0], // Disable ordering for the S/N column

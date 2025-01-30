@@ -11,7 +11,7 @@ class StaffDocumentService extends UserService
     public function __construct(protected StaffDocument $staffDocument) {}
     public function getStaffDocuments($id)
     {
-        return $this->staffDocument->where('user_id', $id)->get();
+        return $this->staffDocument->where('user_id', $id)->latest()->paginate(15);
     }
     public function getStaffDocument($id)
     {

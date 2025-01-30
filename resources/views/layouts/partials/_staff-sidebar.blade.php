@@ -36,6 +36,14 @@
         Transfer
     </a>
 </li>
+
+<li class="menu-item">
+    <a class="{{ request()->routeIs('staff.document.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+        href="{{ route('staff.document.index', auth()->id()) }}">
+        <i class="i-lucide-clipboard size-5"></i>
+        Document
+    </a>
+</li>
 <li class="menu-item">
     <a class="{{ request()->routeIs('staff.promotion.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
         href="{{ route('staff.promotion.index', auth()->id()) }}">

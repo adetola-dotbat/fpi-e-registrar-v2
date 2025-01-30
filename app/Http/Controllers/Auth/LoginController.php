@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -38,10 +40,18 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'email' => ['Invalid email or password. Please try again.'],
+        ]);
+    }
+
     protected function authenticated($request, $user)
     {
-        if ($user->account_type !== 'management' && $user->reset_password != true) {
-            return redirect()->route('staff.reset.password');
+        if ($user->reset_password != true) {
+            return redirect()->route('staff.reset.password')
+                ->with('error', 'You need to reset your password before proceeding.');
         }
 
         return redirect($this->redirectTo);

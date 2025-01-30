@@ -5,6 +5,11 @@
     <div class="col-md-6 col-12 fxt-bg-color">
         <div class="fxt-content">
             <div class="fxt-form">
+                @if ($errors->has('email'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">

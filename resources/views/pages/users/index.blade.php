@@ -161,6 +161,13 @@
                                                     Delete
                                                 </button>
                                             </form>
+                                            @role('admin')
+                                                <a class="text-info hover:text-primary-700"
+                                                    href="{{ route('admin.staff.reset_password', $user->id) }}"
+                                                    onclick="return confirm('Are you sure you want to reset the password for this user?')">
+                                                    <i class="material-symbols-rounded">restart_alt</i> Reset Password
+                                                </a>
+                                            @endrole
                                         </td>
                                     </tr>
                                 @endforeach

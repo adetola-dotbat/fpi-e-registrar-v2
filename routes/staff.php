@@ -6,7 +6,7 @@ use App\Http\Controllers\Staff\EducationController;
 use App\Http\Controllers\Staff\ProfileController;
 use App\Http\Controllers\Staff\ServiceController;
 use App\Http\Controllers\Staff\LeaveController;
-use App\Http\Controllers\Staff\{TransferController, PromotionController, ActingAppointmentController, GratuityPaymentController, CommendationController, TerminationController, ProfessionalDetailsController};
+use App\Http\Controllers\Staff\{TransferController, PromotionController, ActingAppointmentController, GratuityPaymentController, CommendationController, TerminationController, ProfessionalDetailsController, DocumentController};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('staff/')->name('staff.')->group(function () {
@@ -14,6 +14,7 @@ Route::middleware('auth')->prefix('staff/')->name('staff.')->group(function () {
     Route::get('education/{staff}', [EducationController::class, 'view'])->name('education.view');
     Route::get('profession/{staff}', [ProfessionalDetailsController::class, 'view'])->name('profession.view');
     Route::get('transfers', [TransferController::class, 'index'])->name('transfer.index');
+    Route::get('document', [DocumentController::class, 'index'])->name('document.index');
     Route::get('promotions', [PromotionController::class, 'index'])->name('promotion.index');
     Route::get('acting-appointments', [ActingAppointmentController::class, 'index'])->name('acting.appointment.index');
     Route::get('gratuity', [GratuityPaymentController::class, 'index'])->name('gratuity.index');

@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\StaffTransferController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,14 @@ Route::middleware('auth')->prefix('admin/')->name('admin.')->group(function () {
         Route::get('{staff}', [StaffController::class, 'view'])->name('view');
         Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('destroy');
         Route::get('reset-password/{id}', [StaffController::class, 'resetPassword'])->name('reset_password');
+
+        Route::prefix('review/')->name('review.')->group(function () {
+            Route::get('all', [ReviewController::class, 'index'])->name('index');
+            Route::get('{staff}', [ReviewController::class, 'view'])->name('view');
+            Route::post('', [ReviewController::class, 'store'])->name('store');
+            Route::get('destroy/{id}', [ReviewController::class, 'destroy'])->name('destroy');
+            Route::post('update', [ReviewController::class, 'update'])->name('update');
+        });
 
 
         Route::prefix('transfer/')->name('transfer.')->group(function () {

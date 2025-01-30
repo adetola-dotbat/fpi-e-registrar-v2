@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->account_type !== 'management' && $user->reset_password != true) {
+        if ($user->reset_password != true) {
             return redirect()->route('staff.reset.password');
         }
         $data = [

@@ -52,6 +52,17 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="px-3 py-2 text-xs font-medium uppercase text-default-500">Review</li>
+
+                    <li class="menu-item">
+                        <a class="{{ request()->routeIs('admin.staff.review.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
+                            href="{{ route('admin.staff.review.index') }}">
+                            <i class="i-lucide-clipboard size-5"></i>
+
+                            Reviews
+                        </a>
+                    </li>
+
                     <li class="px-3 py-2 text-xs font-medium uppercase text-default-500">Management</li>
 
                     <li class="menu-item">
@@ -97,6 +108,7 @@
                             Commendations
                         </a>
                     </li>
+
                     <li class="menu-item">
                         <a class="{{ request()->routeIs('admin.staff.termination.index') ? 'active' : '' }} group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium text-default-400 transition-all hover:bg-default-100/5"
                             href="{{ route('admin.staff.termination.index') }}">

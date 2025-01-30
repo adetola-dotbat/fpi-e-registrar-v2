@@ -3,10 +3,10 @@
         <div>
             <script>
                 document.write(new Date().getFullYear())
-            </script> © Drezoc
+            </script> © FPI e-Registry
         </div>
         <div class="hidden gap-2 md:flex item-center md:justify-end">
-            Design &amp; Develop by<a href="#" class="text-primary">Myrathemes</a>
+            Design &amp; Develop by<a href="" class="text-primary">CICT Developer</a>
         </div>
     </div>
 </footer>

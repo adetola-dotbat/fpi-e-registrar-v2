@@ -38,7 +38,28 @@
                                         Gender
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
-                                        Cadre
+                                        DOB
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Nationality
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        GPZ
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        State of origin
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Local Government
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Department
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Staff Type
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-start text-default-500">
+                                        Salary Type
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-end text-default-500">
                                         Action</th>
@@ -63,16 +84,39 @@
                                             {{ $user->gender }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ $user->dob }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ Str::title($user->nationality) }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ Str::title($user->gpz) }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ Str::title($user->state_of_origin) }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ Str::title($user->local_government) }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ optional($user->staffDetail)->department }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
+                                            {{ optional($user->staffDetail)->staff_type }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
                                             {{ optional($user->staffDetail)->grade_level }}
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                             <a class="text-success hover:text-primary-700"
                                                 href="{{ route('admin.staff.view', $user->id) }}"><i
                                                     class="i-tabler-external-link text-success"></i></a>
-                                            <a class="text-danger hover:text-primary-700"
-                                                href="{{ route('admin.staff.destroy', $user->id) }}"><i
-                                                    class="material-symbols-rounded">delete</i></a>
                                             @role('admin')
+                                                <a class="text-danger hover:text-primary-700"
+                                                    href="{{ route('admin.staff.destroy', $user->id) }}"
+                                                    onclick="return confirmDelete()">
+                                                    <i class="material-symbols-rounded">delete</i>
+                                                </a>
                                                 <a class="text-info hover:text-primary-700"
                                                     href="{{ route('admin.staff.reset_password', $user->id) }}"
                                                     onclick="return confirm('Are you sure you want to reset the password for this user?')">
@@ -82,7 +126,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -114,6 +157,10 @@
                 paging: true,
                 searching: true,
                 ordering: true,
+                pageLength: 20, // Default records per page
+                lengthMenu: [
+                    [10, 20, 50, 100]
+                ],
                 columnDefs: [{
                     orderable: false,
                     targets: [0], // Disable ordering for the S/N column
@@ -140,5 +187,10 @@
                 ],
             });
         });
+    </script>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this staff member?');
+        }
     </script>
 @endpush

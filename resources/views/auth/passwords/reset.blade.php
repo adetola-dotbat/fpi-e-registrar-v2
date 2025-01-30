@@ -7,6 +7,7 @@
             <div class="fxt-form">
                 <form method="POST" action="{{ route('staff.password.update') }}">
                     @csrf
+                    <h5>Create a new password and confirm your password</h5>
                     <input type="hidden" id="email" class="form-control" name="email"
                         placeholder="demo@federalpolyilaro.edu.ng" value="{{ auth()->user()->email }}" required="required">
 

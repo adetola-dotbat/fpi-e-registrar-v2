@@ -59,7 +59,7 @@
                                 </tr>
                                 <tr>
                                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-default-800">
-                                        Level
+                                        Salary Type
                                     </td>
                                     <td class="px-6 py-4 text-sm whitespace-nowrap text-default-800">
                                         {{ $user->staffDetail->grade_level }}

@@ -17,13 +17,8 @@ class StoreRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'date_leave_requested' => 'required|date',
-            'date_resume_duty' => 'required|date',
-            'leave_address' => 'required|string',
-            'recommend' => 'required|string',
-            'leave_type_id' => 'required|exists:leave_types,id',
-            'reasons' => 'required|string',
+            'email' => 'required|exists:users,email',
+            'message' => 'required|string',
         ];
     }
 }
