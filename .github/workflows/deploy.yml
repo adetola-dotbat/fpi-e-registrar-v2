@@ -26,16 +26,6 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # - name: Run database migrations
-      #   run: php artisan migrate --force
-      #   env:
-      #     DB_CONNECTION: mysql
-      #     DB_HOST: 127.0.0.1
-      #     DB_PORT: 3306
-      #     DB_DATABASE: federalpolyilaro_fpi_e-register_db
-      #     DB_USERNAME: federalpolyilaro_sug_election_user
-      #     DB_PASSWORD: fp!}rNB,kcTH
-
       # Step 4: Upload files to cPanel via FTP
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.2.0
@@ -44,14 +34,3 @@ jobs:
           username: federalpolyilaro
           password: N3w5ever@ilar
           server-dir: /public_html/fpieregistry.federalpolyilaro.edu.ng/public/
-
-      - name: Run Migrations via SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: 192.64.84.226
-          username: federalpolyilaro
-          password: N3w5ever@ilar
-          script: |
-            cd /public_html/fpieregistry.federalpolyilaro.edu.ng/
-            composer install
-            php artisan migrate --force
